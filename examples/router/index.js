@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import sign from './sign'
+import dashboard from './dashboard'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const router = new VueRouter({
       path: '/sign',
       component: resolve => { require(['../components/sign'], resolve) },
       children: sign
+    },
+    {
+      path: '/dashboard',
+      component: resolve => { require(['../components/dashboard'], resolve) },
+      children: dashboard
     }
   ]
 })
