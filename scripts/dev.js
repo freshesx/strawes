@@ -1,2 +1,8 @@
 const WebpackDevRunner = require('freshes-man/helpers/WebpackDevRunner')
-module.exports = new WebpackDevRunner().run()
+const path = require('path')
+
+module.exports = new WebpackDevRunner({
+  appPath: path.join(process.cwd(), 'examples'),
+  testPath: path.join(process.cwd(), 'examples/test'),
+  sassResources: path.join(process.cwd(), 'examples/human/config.scss')
+}).run()
