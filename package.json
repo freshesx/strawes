@@ -1,0 +1,40 @@
+{
+  "name": "strawes",
+  "version": "1.0.0",
+  "description": "Dashboard UI by FreshES",
+  "author": "ChaselWu <chasel.wu@freshes.org>",
+  "private": true,
+  "scripts": {
+    "start": "node ./scripts/dev.js",
+    "dev": "node ./scripts/dev.js",
+    "prod": "node ./scripts/prod.js",
+    "build": "node ./scripts/prod.js",
+    "lint": "eslint --ext .js,.vue src",
+    "config": "cp src/env/config.js src/env/config.local.js",
+    "git": "git init && git add . && git commit -m 'init project'",
+    "first": "yarn install && yarn run config && yarn run git"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "vue": "^2.3.4",
+    "vue-human": "^2.6.2",
+    "vue-human-env": "^2.0.2",
+    "vue-router": "^2.7.0",
+    "vuex": "^2.3.1"
+  },
+  "devDependencies": {
+    "freshes-man": "^0.3.0"
+  },
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 5.0.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "iOS >= 7.1",
+    "Android >= 4.3",
+    "Samsung >= 4",
+    "not ie <= 10",
+    "not Opera <= 200"
+  ]
+}
