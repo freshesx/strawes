@@ -1,5 +1,5 @@
 <template>
-  <div class="sw-brand">
+  <div class="mw-brand">
     <slot></slot>
   </div>
 </template>
@@ -8,12 +8,12 @@
   import Element from 'vue-human/utils/Element'
 
   export default new Element({
-    name: 'sw-brand'
+    name: 'mw-brand'
   })
 </script>
 
 <style lang="scss" scoped>
-  .sw-brand {
+  .mw-brand {
     padding: 1rem;
     font-size: 1.25rem;
   }
