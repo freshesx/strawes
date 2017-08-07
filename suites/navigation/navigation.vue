@@ -1,5 +1,7 @@
 <template>
-  <div class="mw-navigation">Navigation</div>
+  <div class="mw-navigation">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
