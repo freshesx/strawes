@@ -14,16 +14,16 @@
           <mn-icon :name="item.icon" :scale="0.9" v-if="item.icon"></mn-icon>
           {{ item.label }}
         </span>
-        <div class="mw-menu-badge">
-
+        <div class="mw-menu-badge" v-if="item.badge" @click="$router.push(item.badge.route || item.route)">
+          {{item.badge.content}}
         </div>
-        <div class="mw-menu-dropdown" v-if="item.children && item.children.length > 0">
+        <div class="mw-menu-dropdown" v-if="!item.isFixed && item.children && item.children.length > 0">
         <mn-icon :name="icons.arrowUp" :scale="0.8" v-if="item.isOpened"></mn-icon>
           <mn-icon :name="icons.arrowDown" :scale="0.8" v-else></mn-icon>
         </div>
       </div>
       <!-- 子菜单 -->
-      <div :class="['mw-menu-second-level', { 'is-opened': item.isOpened }]" v-if="item.children && item.children.length > 0">
+      <div :class="['mw-menu-second-level', { 'is-opened': item.isOpened || item.isFixed }]" v-if="item.children && item.children.length > 0">
         <div class="mw-menu-second-button" v-for="child in item.children">
           <router-link :to="child.route" class="mw-menu-second-link">
             {{ child.label }}
@@ -99,6 +99,13 @@
 
   .mw-menu-badge {
     flex-shrink: 0;
+    padding: 0 0.5rem;
+    border-radius: 0.5rem;
+    background: #ff5b57;
+    color: #fff;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    margin-right: 0.5rem;
   }
 
   .mw-menu-dropdown {
@@ -123,7 +130,7 @@
   .mw-menu-second-link {
     display: block;
     flex: 1;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
     text-decoration: none;
     color: #333;
   }

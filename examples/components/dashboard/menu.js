@@ -15,6 +15,32 @@ export default [
   {
     label: '原则',
     isOpened: false,
+    badge: {
+      content: 'hi',
+      route: { name: 'stylesRegulation' }
+    },
+    children: [
+      {
+        label: '规则化',
+        route: { name: 'stylesRegulation' }
+      },
+      {
+        label: '多屏化',
+        route: { name: 'stylesMultiscreens' }
+      },
+      {
+        label: '高效化',
+        route: { name: 'stylesEfficient' }
+      },
+      {
+        label: '活泼化',
+        route: { name: 'stylesLively' }
+      }
+    ]
+  },
+  {
+    label: '原则',
+    isFixed: true,
     children: [
       {
         label: '规则化',
