@@ -61,6 +61,7 @@
 
   .mw-frame-navigation {
     flex: 1;
+    position: relative;
   }
 
   .mw-frame-information {

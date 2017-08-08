@@ -10,23 +10,33 @@ export default [
   {
     label: '首页',
     route: { name: 'start' },
-    icon: require('vue-human-icons/js/ios/gear')
+    icon: require('vue-human-icons/js/ios/gear'),
+    badge: {
+      route: { name: 'stylesRegulation' }
+    }
   },
   {
     label: '原则',
     isOpened: false,
     badge: {
-      content: 'hi',
       route: { name: 'stylesRegulation' }
     },
     children: [
       {
         label: '规则化',
-        route: { name: 'stylesRegulation' }
+        route: { name: 'stylesRegulation' },
+        badge: {
+          content: 1,
+          route: { name: 'stylesRegulation' }
+        }
       },
       {
         label: '多屏化',
-        route: { name: 'stylesMultiscreens' }
+        route: { name: 'stylesMultiscreens' },
+        badge: {
+          content: 'hi',
+          route: { name: 'stylesRegulation' }
+        }
       },
       {
         label: '高效化',
