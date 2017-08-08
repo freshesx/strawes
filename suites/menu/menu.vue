@@ -2,12 +2,11 @@
   <div class="mw-menu">
     <div class="mw-menu-first-level" v-for="item in list">
       <!-- 父菜单 -->
-      <div :class="['mw-menu-first-button']">
+      <div :class="['mw-menu-first-button']" @click="onSelect(item)">
         <router-link
           v-if="item.route"
           :to="item.route"
-          class="mw-menu-first-link"
-          @click="onSelect(item)">
+          class="mw-menu-first-link">
           <mn-icon :name="item.icon" :scale="0.9" v-if="item.icon"></mn-icon>
           {{ item.label }}
         </router-link>
@@ -19,11 +18,12 @@
 
         </div>
         <div class="mw-menu-dropdown" v-if="item.children && item.children.length > 0">
-          <mn-icon :name="icons.arrowDown" :scale="0.9"></mn-icon>
+        <mn-icon :name="icons.arrowUp" :scale="0.8" v-if="item.isOpened"></mn-icon>
+          <mn-icon :name="icons.arrowDown" :scale="0.8" v-else></mn-icon>
         </div>
       </div>
       <!-- 子菜单 -->
-      <div :class="['mw-menu-second-level']" v-if="item.children && item.children.length > 0">
+      <div :class="['mw-menu-second-level', { 'is-opened': item.isOpened }]" v-if="item.children && item.children.length > 0">
         <div class="mw-menu-second-button" v-for="child in item.children">
           <router-link :to="child.route" class="mw-menu-second-link">
             {{ child.label }}
@@ -57,6 +57,9 @@
     },
     methods: {
       onSelect (item) {
+        if (item.children && item.children.length > 0) {
+          item.isOpened = !item.isOpened
+        }
       }
     }
   })
@@ -103,11 +106,18 @@
   }
 
   .mw-menu-second-level {
+    height: 0;
+    overflow: hidden;
 
+    &.is-opened {
+      height: auto;
+    }
   }
 
   .mw-menu-second-button {
-
+    &:hover {
+      background: #eee;
+    }
   }
 
   .mw-menu-second-link {

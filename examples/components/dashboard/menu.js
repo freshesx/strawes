@@ -14,6 +14,7 @@ export default [
   },
   {
     label: '原则',
+    isOpened: false,
     children: [
       {
         label: '规则化',
