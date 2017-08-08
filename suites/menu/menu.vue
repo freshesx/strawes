@@ -2,8 +2,12 @@
   <div class="mw-menu">
     <div class="mw-menu-first-level" v-for="item in list">
       <!-- 父菜单 -->
-      <div class="mw-menu-first-button">
-        <router-link :to="item.route" class="mw-menu-first-link" v-if="item.route">
+      <div :class="['mw-menu-first-button']">
+        <router-link
+          v-if="item.route"
+          :to="item.route"
+          class="mw-menu-first-link"
+          @click="onSelect(item)">
           <mn-icon :name="item.icon" :scale="0.9" v-if="item.icon"></mn-icon>
           {{ item.label }}
         </router-link>
@@ -19,7 +23,7 @@
         </div>
       </div>
       <!-- 子菜单 -->
-      <div class="mw-menu-second-level is-hidden" v-if="item.children && item.children.length > 0">
+      <div :class="['mw-menu-second-level']" v-if="item.children && item.children.length > 0">
         <div class="mw-menu-second-button" v-for="child in item.children">
           <router-link :to="child.route" class="mw-menu-second-link">
             {{ child.label }}
@@ -37,7 +41,11 @@
   export default new Element({
     name: 'mw-menu',
     props: {
-      list: Array
+      list: Array,
+      accordion: {
+        type: Boolean,
+        default: false
+      }
     },
     data () {
       return {
@@ -48,6 +56,8 @@
       }
     },
     methods: {
+      onSelect (item) {
+      }
     }
   })
 </script>
@@ -106,5 +116,9 @@
     padding: 0.5rem 2rem;
     text-decoration: none;
     color: #333;
+  }
+
+  .router-link-active {
+    background: #eee;
   }
 </style>

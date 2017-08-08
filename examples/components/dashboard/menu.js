@@ -9,7 +9,7 @@
 export default [
   {
     label: '首页',
-    route: { name: 'dashboard' },
+    route: { name: 'start' },
     icon: require('vue-human-icons/js/ios/gear')
   },
   {
@@ -17,19 +17,19 @@ export default [
     children: [
       {
         label: '规则化',
-        route: { name: 'dashboard' }
+        route: { name: 'stylesRegulation' }
       },
       {
         label: '多屏化',
-        route: { name: 'dashboard' }
+        route: { name: 'stylesMultiscreens' }
       },
       {
         label: '高效化',
-        route: { name: 'dashboard' }
+        route: { name: 'stylesEfficient' }
       },
       {
         label: '活泼化',
-        route: { name: 'dashboard' }
+        route: { name: 'stylesLively' }
       }
     ]
   }
