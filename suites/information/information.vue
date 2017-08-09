@@ -5,8 +5,8 @@
         <img :src="profile.avatar" v-if="profile && profile.avatar">
         <mn-icon :name="icons.analytics" :scale="2" v-else></mn-icon>
       </div>
-      <div class="mw-information-profile-name">
-        {{profile.name || 'Strawes'}}
+      <div class="mw-information-profile-name" v-if="profile.name">
+        {{profile.name}}
       </div>
     </div>
     <div class="mw-information-tool">
