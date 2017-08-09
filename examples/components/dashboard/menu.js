@@ -10,7 +10,7 @@ export default [
   {
     label: '首页',
     route: { name: 'start' },
-    icon: require('vue-human-icons/js/ios/gear'),
+    icon: require('vue-human-icons/js/ios/keypad'),
     badge: {
       route: { name: 'stylesRegulation' }
     }
@@ -50,7 +50,6 @@ export default [
   },
   {
     label: '原则',
-    isFixed: true,
     children: [
       {
         label: '规则化',

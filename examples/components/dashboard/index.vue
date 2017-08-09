@@ -4,7 +4,7 @@
       Strawes
     </mw-brand>
     <mw-navigation slot="navigation">
-      <mw-menu :list="menu"></mw-menu>
+      <mw-menu :list="menu" :collapsed="false"></mw-menu>
     </mw-navigation>
     <div slot="information">
       ChaselWu

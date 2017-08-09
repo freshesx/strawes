@@ -24,7 +24,7 @@
             {{item.badge.content}}
           </div>
           <div class="mw-menu-dropdown">
-            <div v-if="!item.isFixed && item.children && item.children.length > 0">
+            <div v-if="collapsed && item.children && item.children.length > 0">
               <mn-icon :name="icons.arrowUp" :scale="0.8" v-if="item.isOpened"></mn-icon>
               <mn-icon :name="icons.arrowDown" :scale="0.8" v-else></mn-icon>
             </div>
@@ -32,7 +32,7 @@
         </div>
         <!-- 子菜单 -->
         <div
-          :class="['mw-menu-second-level', { 'is-opened': item.isOpened || item.isFixed }]"
+          :class="['mw-menu-second-level', { 'is-opened': item.isOpened || !collapsed }]"
           v-if="item.children && item.children.length > 0">
           <div
             :class="['mw-menu-second-button', {'is-active': child.route && (child.route.name === activeName)}]"
@@ -64,6 +64,10 @@
       accordion: {
         type: Boolean,
         default: false
+      },
+      collapsed: {
+        type: Boolean,
+        default: true
       }
     },
     data () {
