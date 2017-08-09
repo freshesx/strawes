@@ -65,6 +65,7 @@
 
   .mw-frame-information {
     flex-shrink: 0;
+    padding: 1rem;
   }
 
   .mw-frame-contents {
