@@ -1,6 +1,6 @@
 <template>
   <mn-scroller>
-    <div class="mw-menu">
+    <div class="mw-menu is">
       <div class="mw-menu-first-level" v-for="item in list">
         <!-- 父菜单 -->
         <div
@@ -86,6 +86,10 @@
         }
 
         if (item.children && item.children.length > 0) {
+          if (item.isOpened === undefined) {
+            this.$set(item, 'isOpened', true)
+            return
+          }
           item.isOpened = !item.isOpened
         }
       }

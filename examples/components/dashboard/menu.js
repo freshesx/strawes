@@ -17,7 +17,6 @@ export default [
   },
   {
     label: '原则',
-    isOpened: false,
     badge: {
       route: { name: 'stylesRegulation' }
     },
