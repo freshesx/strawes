@@ -7,7 +7,8 @@
       <mw-menu :list="menu"></mw-menu>
     </mw-navigation>
     <mw-information slot="information" :profile="profile">
-      <mn-btn theme="secondary" :icon="icons.more" circle size="sm"></mn-btn>
+      <mn-btn theme="secondary" :icon="icons.gear" circle size="sm"></mn-btn>
+      <mn-btn theme="secondary" :icon="icons.redo" circle size="sm"></mn-btn>
     </mw-information>
   </mw-frame>
 </template>
@@ -35,7 +36,8 @@
           name: '测试账号'
         },
         icons: {
-          more: require('vue-human-icons/js/ios/gear-outline')
+          gear: require('vue-human-icons/js/ios/gear-outline'),
+          redo: require('vue-human-icons/js/ios/redo')
         }
       }
     }
