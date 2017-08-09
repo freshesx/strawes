@@ -83,7 +83,7 @@
     methods: {
       onSelect (item) {
         if (item.children && item.children.length > 0) {
-          if (this.collapsed && this.accordion) {
+          if (item.collapsed && this.accordion) {
             this.list.forEach(val => {
               val.isOpened = false
             })
