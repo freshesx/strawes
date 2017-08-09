@@ -1,10 +1,10 @@
 <template>
   <mn-scroller>
-    <div class="mw-menu is">
+    <div :class="['mw-menu', {'is-spread': !collapsed}]">
       <div class="mw-menu-first-level" v-for="item in list">
         <!-- 父菜单 -->
         <div
-          :class="['mw-menu-first-button', {'is-active': item.route && (item.route.name === activeName)}]"
+          :class="['mw-menu-first-button', {'is-selected': item.route && (item.route.name === routeName)}]"
           @click="onSelect(item)">
           <router-link
             v-if="item.route"
@@ -35,9 +35,8 @@
           :class="['mw-menu-second-level', { 'is-opened': item.isOpened || !collapsed }]"
           v-if="item.children && item.children.length > 0">
           <div
-            :class="['mw-menu-second-button', {'is-active': child.route && (child.route.name === activeName)}]"
-            v-for="child in item.children"
-            @click="onSelect(child)">
+            :class="['mw-menu-second-button', {'is-selected': child.route && (child.route.name === routeName)}]"
+            v-for="child in item.children">
             <router-link :to="child.route" class="mw-menu-second-link">
               {{ child.label }}
             </router-link>
@@ -75,16 +74,16 @@
         icons: {
           arrowDown: require('vue-human-icons/js/ios/arrow-down'),
           arrowUp: require('vue-human-icons/js/ios/arrow-up')
-        },
-        activeName: undefined
+        }
+      }
+    },
+    computed: {
+      routeName () {
+        return this.$route.name
       }
     },
     methods: {
       onSelect (item) {
-        if (item.route) {
-          this.activeName = item.route.name
-        }
-
         if (item.children && item.children.length > 0) {
           if (item.isOpened === undefined) {
             this.$set(item, 'isOpened', true)
@@ -99,10 +98,14 @@
 
 <style lang="scss">
   .mw-menu {
-
-    .is-active,
-    .router-link-active {
+    .is-selected {
       background: #eee;
+    }
+
+    &.is-spread {
+      span.mw-menu-first-link {
+        background: #fff;
+      }
     }
   }
 
@@ -116,7 +119,7 @@
     transition-duration: 500ms;
 
     &:hover {
-      background: #eee;
+      cursor: text;
     }
   }
 
@@ -162,6 +165,7 @@
   .mw-menu-second-level {
     height: 0;
     overflow: hidden;
+    font-size: 0.875rem;
 
     &.is-opened {
       height: auto;
@@ -186,6 +190,6 @@
     flex: 1;
     padding: 0.5rem 1rem 0.5rem 2rem;
     text-decoration: none;
-    color: #333;
+    color: #666;
   }
 </style>
