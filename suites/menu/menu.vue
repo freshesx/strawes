@@ -87,7 +87,7 @@
     methods: {
       onSelect (item) {
         if (item.children && item.children.length > 0) {
-          if (item.isOpened === undefined) this.$set(item, 'isOpened', true)
+          if (item.isOpened === undefined) return this.$set(item, 'isOpened', true)
 
           if (this.collapsed && this.accordion) {
             this.list.forEach(val => {
@@ -106,7 +106,7 @@
         if (item.children) {
           if (item.children.findIndex(child => {
             return child.route && child.route.name === routeName
-          }) > -1) this.$set(item, 'isOpened', true)
+          }) > -1) return this.$set(item, 'isOpened', true)
         }
       })
     }
