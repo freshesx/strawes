@@ -1,10 +1,12 @@
 <template>
   <mn-scroller>
-    <div :class="['mw-menu', {'is-spread': !collapsed}]">
+    <div class="mw-menu">
       <div class="mw-menu-first-level" v-for="item in list">
         <!-- 父菜单 -->
         <div
-          :class="['mw-menu-first-button', {'is-selected': item.route && (item.route.name === routeName)}]"
+          :class="['mw-menu-first-button',
+           {'is-selected': item.route && (item.route.name === routeName)},
+           {'is-title': !item.route && !collapsed}]"
           @click="onSelect(item)">
           <router-link
             v-if="item.route"
@@ -89,9 +91,28 @@
             this.$set(item, 'isOpened', true)
             return
           }
+
+          if (this.accordion && this.collapsed) {
+            this.list.forEach(val => {
+              // val.isOpened = false
+            })
+          }
+
           item.isOpened = !item.isOpened
         }
       }
+    },
+    mounted () {
+      const routeName = this.$route.name
+      this.list.forEach(item => {
+        if (item.children) {
+          if (item.children.findIndex(child => {
+            return child.route && child.route.name === routeName
+          }) > -1) {
+            this.$set(item, 'isOpened', true)
+          }
+        }
+      })
     }
   })
 </script>
@@ -100,12 +121,6 @@
   .mw-menu {
     .is-selected {
       background: #eee;
-    }
-
-    &.is-spread {
-      span.mw-menu-first-link {
-        background: #fff;
-      }
     }
   }
 
@@ -119,7 +134,12 @@
     transition-duration: 500ms;
 
     &:hover {
+      cursor: pointer;
+      background: #eee;
+    }
+    &.is-title {
       cursor: text;
+      background: #fff;
     }
   }
 
@@ -149,6 +169,7 @@
     font-size: 0.75rem;
     line-height: 1rem;
     margin-right: 0.2rem;
+    cursor: pointer;
 
     &.is-empty {
       width: 0.5rem;
