@@ -16,7 +16,7 @@ export default [
     }
   },
   {
-    label: '原则',
+    label: '原则1',
     badge: {
       route: { name: 'stylesRegulation' }
     },
@@ -36,28 +36,12 @@ export default [
           content: 'hi',
           route: { name: 'stylesRegulation' }
         }
-      },
-      {
-        label: '高效化',
-        route: { name: 'stylesEfficient' }
-      },
-      {
-        label: '活泼化',
-        route: { name: 'stylesLively' }
       }
     ]
   },
   {
-    label: '原则',
+    label: '原则2',
     children: [
-      {
-        label: '规则化',
-        route: { name: 'stylesRegulation' }
-      },
-      {
-        label: '多屏化',
-        route: { name: 'stylesMultiscreens' }
-      },
       {
         label: '高效化',
         route: { name: 'stylesEfficient' }
