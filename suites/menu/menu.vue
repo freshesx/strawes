@@ -92,10 +92,11 @@
             return
           }
 
-          if (this.accordion && this.collapsed) {
+          if (this.collapsed && this.accordion) {
             this.list.forEach(val => {
-              // val.isOpened = false
+              val.isOpened = false
             })
+            return item.isOpened = true
           }
 
           item.isOpened = !item.isOpened
