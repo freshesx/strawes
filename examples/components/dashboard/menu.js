@@ -17,6 +17,7 @@ export default [
   },
   {
     label: '原则1',
+    collapsed: true,
     badge: {
       route: { name: 'stylesRegulation' }
     },

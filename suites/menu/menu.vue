@@ -6,7 +6,7 @@
         <div
           :class="['mw-menu-first-button',
            {'is-selected': item.route && (item.route.name === routeName)},
-           {'is-title': !item.route && !collapsed}]"
+           {'is-title': !item.route && !item.collapsed}]"
           @click="onSelect(item)">
           <router-link
             v-if="item.route"
@@ -26,7 +26,7 @@
             {{item.badge.content}}
           </div>
           <div class="mw-menu-dropdown">
-            <div v-if="collapsed && item.children && item.children.length > 0">
+            <div v-if="item.collapsed && item.children && item.children.length > 0">
               <mn-icon :name="icons.arrowUp" :scale="0.8" v-if="item.isOpened"></mn-icon>
               <mn-icon :name="icons.arrowDown" :scale="0.8" v-else></mn-icon>
             </div>
@@ -34,7 +34,7 @@
         </div>
         <!-- 子菜单 -->
         <div
-          :class="['mw-menu-second-level', { 'is-opened': item.isOpened || !collapsed }]"
+          :class="['mw-menu-second-level', { 'is-opened': item.isOpened || !item.collapsed }]"
           v-if="item.children && item.children.length > 0">
           <div
             :class="['mw-menu-second-button', {'is-selected': child.route && (child.route.name === routeName)}]"
@@ -65,10 +65,6 @@
       accordion: {
         type: Boolean,
         default: false
-      },
-      collapsed: {
-        type: Boolean,
-        default: true
       }
     },
     data () {
