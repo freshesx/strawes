@@ -57,15 +57,12 @@
 
 <script>
   import Element from 'vue-human/utils/Element'
+  import shade from 'vue-human/utils/shade'
 
   export default new Element({
     name: 'mw-menu',
     props: {
-      list: Array,
-      accordion: {
-        type: Boolean,
-        default: false
-      }
+      list: Array
     },
     data () {
       return {
@@ -83,7 +80,7 @@
     methods: {
       onSelect (item) {
         if (item.children && item.children.length > 0) {
-          if (item.collapsed && this.accordion) {
+          if (item.collapsed) {
             this.list.forEach(val => {
               val.isOpened = false
             })
