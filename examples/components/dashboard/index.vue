@@ -4,7 +4,7 @@
       Strawes
     </mw-brand>
     <mw-navigation slot="navigation">
-      <mw-menu :list="menu" :arrow="icons.arrow"></mw-menu>
+      <mw-menu :list="menu"></mw-menu>
     </mw-navigation>
     <div slot="information">
       ChaselWu
@@ -27,10 +27,7 @@
     },
     data () {
       return {
-        menu: require('./menu').default,
-        icons: {
-          arrow: require('vue-human-icons/js/ios/arrow-right')
-        }
+        menu: require('./menu').default
       }
     }
   }

@@ -56,13 +56,17 @@
 
 <script>
   import Element from 'vue-human/utils/Element'
-  import shade from 'vue-human/utils/shade'
 
   export default new Element({
     name: 'mw-menu',
     props: {
       list: Array,
-      arrow: Object
+      arrow: {
+        type: Object,
+        default () {
+          return require('vue-human-icons/js/ios/arrow-right')
+        }
+      }
     },
     computed: {
       routeName () {
