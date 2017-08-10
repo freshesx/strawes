@@ -1,7 +1,7 @@
 <template>
   <mn-scroller>
     <div class="mw-menu">
-      <div class="mw-menu-first-level" v-for="item in list">
+      <div :class="['mw-menu-first-level', { 'is-opened': item.isOpened || !item.collapsed }]" v-for="item in list">
         <!-- 父菜单 -->
         <div
           :class="['mw-menu-first-button',
@@ -27,14 +27,13 @@
           </div>
           <div class="mw-menu-dropdown">
             <div v-if="item.collapsed && item.children && item.children.length > 0">
-              <mn-icon :name="icons.arrowUp" :scale="0.8" v-if="item.isOpened"></mn-icon>
-              <mn-icon :name="icons.arrowDown" :scale="0.8" v-else></mn-icon>
+              <mn-icon :name="arrow" :scale="0.8"></mn-icon>
             </div>
           </div>
         </div>
         <!-- 子菜单 -->
         <div
-          :class="['mw-menu-second-level', { 'is-opened': item.isOpened || !item.collapsed }]"
+          class="mw-menu-second-level"
           v-if="item.children && item.children.length > 0">
           <div
             :class="['mw-menu-second-button', {'is-selected': child.route && (child.route.name === routeName)}]"
@@ -62,15 +61,8 @@
   export default new Element({
     name: 'mw-menu',
     props: {
-      list: Array
-    },
-    data () {
-      return {
-        icons: {
-          arrowDown: require('vue-human-icons/js/ios/arrow-down'),
-          arrowUp: require('vue-human-icons/js/ios/arrow-up')
-        }
-      }
+      list: Array,
+      arrow: Object
     },
     computed: {
       routeName () {
@@ -169,16 +161,18 @@
   .mw-menu-dropdown {
     flex-shrink: 0;
     width: 1.5rem;
+
+    .mn-icon-svg > svg {
+      vertical-align: sub;
+      transition: all 0.3s;
+    }
   }
 
   .mw-menu-second-level {
     height: 0;
     overflow: hidden;
     font-size: 0.875rem;
-
-    &.is-opened {
-      height: auto;
-    }
+    transition: all 0.3s;
   }
 
   .mw-menu-second-button {
@@ -200,5 +194,15 @@
     padding: 0.5rem 1rem 0.5rem 2rem;
     text-decoration: none;
     color: #666;
+  }
+
+  .is-opened {
+    .mw-menu-second-level {
+      height: 100px;
+    }
+
+    .mw-menu-dropdown svg {
+      transform: rotate(90deg);
+    }
   }
 </style>
