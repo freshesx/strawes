@@ -13,14 +13,15 @@ export default [
   {
     label: '首页',
     route: { name: 'start' },
-    icon: require('vue-human-icons/js/ios/keypad'),
+    icon: require('vue-human-icons/js/ios/home-outline'),
     badge: {
       route: { name: 'stylesRegulation' }
     }
   },
   {
-    label: '原则1',
+    label: '原则',
     collapsed: true,
+    icon: require('vue-human-icons/js/ios/paper-outline'),
     badge: {
       route: { name: 'stylesRegulation' }
     },
@@ -40,13 +41,7 @@ export default [
           content: 'hi',
           route: { name: 'stylesRegulation' }
         }
-      }
-    ]
-  },
-  {
-    label: '原则2',
-    collapsed: true,
-    children: [
+      },
       {
         label: '高效化',
         route: { name: 'stylesEfficient' }
