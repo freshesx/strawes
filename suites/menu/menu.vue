@@ -57,6 +57,13 @@
 <script>
   import Element from 'vue-human/utils/Element'
 
+  /**
+   * 侧边栏菜单组件
+   * @module suits/menu/menu
+   *
+   * @param {Array}  [list]                  - 菜单数据
+   * @param {Object} [arrow=ios/arrow-right] - 箭头图标
+   */
   export default new Element({
     name: 'mw-menu',
     props: {
@@ -74,6 +81,7 @@
       }
     },
     methods: {
+      // 点击一级菜单方法
       onSelect (item) {
         if (item.children && item.children.length > 0) {
           if (item.collapsed) {
@@ -85,18 +93,22 @@
 
           item.expanded = !item.expanded
         }
+      },
+      // 初始化页面时设置被选中菜单展开
+      expandByRoute () {
+        const routeName = this.routeName
+        this.list.forEach(item => {
+          if (item.children) {
+            this.$set(item, 'expanded', false)
+            if (item.children.findIndex(child => {
+              return child.route && child.route.name === routeName
+            }) > -1) return this.$set(item, 'expanded', true)
+          }
+        })
       }
     },
     mounted () {
-      const routeName = this.$route.name
-      this.list.forEach(item => {
-        if (item.children) {
-          this.$set(item, 'expanded', false)
-          if (item.children.findIndex(child => {
-            return child.route && child.route.name === routeName
-          }) > -1) return this.$set(item, 'expanded', true)
-        }
-      })
+      this.expandByRoute()
     }
   })
 </script>

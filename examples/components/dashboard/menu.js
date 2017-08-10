@@ -1,10 +1,13 @@
 /**
  * 菜单
- * @prop {Array} menu
- * @prop {Object} menu[]
- * @prop {String} menu[].label
- * @prop {Object|String} menu[].route - 路由地址
- * @prop {Boolean} menu[].enableCollapse - 允许折叠
+ * @prop {Array}         menu
+ * @prop {Object}        menu[]
+ * @prop {String}        menu[].label           - 显示标题
+ * @prop {Object}        menu[].route           - 路由地址
+ * @prop {Boolean}       menu[].collapsed       - 允许折叠
+ * @prop {Object}        menu[].badge           - 徽标
+ * @prop {String}        menu[].badge[].content - 徽标显示内容
+ * @prop {String}        menu[].badge[].route   - 徽标路由地址
  */
 export default [
   {
