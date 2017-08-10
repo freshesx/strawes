@@ -198,7 +198,7 @@
 
   .is-opened {
     .mw-menu-second-level {
-      height: 100px;
+      height: auto;
     }
 
     .mw-menu-dropdown svg {
