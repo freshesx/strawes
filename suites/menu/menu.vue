@@ -1,7 +1,7 @@
 <template>
   <mn-scroller>
     <div class="mw-menu">
-      <div :class="['mw-menu-first-level', { 'is-opened': item.isOpened || !item.collapsed }]" v-for="item in list">
+      <div :class="['mw-menu-first-level', { 'is-opened': item.expanded || !item.collapsed }]" v-for="item in list">
         <!-- 父菜单 -->
         <div
           :class="['mw-menu-first-button',
@@ -78,12 +78,12 @@
         if (item.children && item.children.length > 0) {
           if (item.collapsed) {
             this.list.forEach(val => {
-              val.isOpened = false
+              val.expanded = false
             })
-            return item.isOpened = true
+            return item.expanded = true
           }
 
-          item.isOpened = !item.isOpened
+          item.expanded = !item.expanded
         }
       }
     },
@@ -91,10 +91,10 @@
       const routeName = this.$route.name
       this.list.forEach(item => {
         if (item.children) {
-          this.$set(item, 'isOpened', false)
+          this.$set(item, 'expanded', false)
           if (item.children.findIndex(child => {
             return child.route && child.route.name === routeName
-          }) > -1) return this.$set(item, 'isOpened', true)
+          }) > -1) return this.$set(item, 'expanded', true)
         }
       })
     }
