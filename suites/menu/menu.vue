@@ -12,11 +12,11 @@
             v-if="item.route"
             :to="item.route"
             class="mw-menu-first-link">
-            <mn-icon :name="item.icon" :scale="0.8" v-if="item.icon"></mn-icon>
+            <mn-icon :name="item.icon" :scale="0.8" v-if="item.icon" style="vertical-align: -3px;"></mn-icon>
             <span>{{ item.label }}</span>
           </router-link>
           <span v-else class="mw-menu-first-link">
-            <mn-icon :name="item.icon" :scale="0.8" v-if="item.icon"></mn-icon>
+            <mn-icon :name="item.icon" :scale="0.8" v-if="item.icon" style="vertical-align: -3px;"></mn-icon>
             {{ item.label }}
           </span>
           <div
@@ -27,7 +27,7 @@
           </div>
           <div class="mw-menu-dropdown">
             <div v-if="item.collapsed && item.children && item.children.length > 0">
-              <mn-icon :name="arrow" :scale="0.8"></mn-icon>
+              <mn-icon class="mw-menu-arrow" :name="arrow" :scale="0.8" style="vertical-align: -3px;"></mn-icon>
             </div>
           </div>
         </div>
@@ -83,16 +83,10 @@
     methods: {
       // 点击一级菜单方法
       onSelect (item) {
-        if (item.children && item.children.length > 0) {
-          if (item.collapsed) {
-            this.list.forEach(val => {
-              val.expanded = false
-            })
-            return item.expanded = true
-          }
-
-          item.expanded = !item.expanded
-        }
+        this.list.forEach(val => {
+          val.expanded = false
+        })
+        return item.expanded = true
       },
       // 初始化页面时设置被选中菜单展开
       expandByRoute () {
@@ -117,6 +111,17 @@
   .mw-menu {
     .is-selected {
       background: #eee;
+    }
+
+    .is-opened {
+      .mw-menu-second-level {
+        height: auto;
+      }
+
+      .mw-menu-arrow {
+        transform: rotate(90deg);
+        transition: all 0.3s;
+      }
     }
   }
 
@@ -146,14 +151,6 @@
     padding: 0.5rem 1rem;
     text-decoration: none;
     color: #333;
-
-    .mn-icon {
-      margin-right: 0.2rem;
-    }
-
-    .mn-icon-svg > svg {
-      vertical-align: sub;
-    }
   }
 
   .mw-menu-badge {
@@ -177,11 +174,6 @@
   .mw-menu-dropdown {
     flex-shrink: 0;
     width: 1.5rem;
-
-    .mn-icon-svg > svg {
-      vertical-align: sub;
-      transition: all 0.3s;
-    }
   }
 
   .mw-menu-second-level {
@@ -210,15 +202,5 @@
     padding: 0.5rem 1rem 0.5rem 2rem;
     text-decoration: none;
     color: #666;
-  }
-
-  .is-opened {
-    .mw-menu-second-level {
-      height: auto;
-    }
-
-    .mw-menu-dropdown svg {
-      transform: rotate(90deg);
-    }
   }
 </style>
