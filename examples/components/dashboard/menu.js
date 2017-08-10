@@ -42,6 +42,7 @@ export default [
   },
   {
     label: '原则2',
+    collapsed: true,
     children: [
       {
         label: '高效化',
