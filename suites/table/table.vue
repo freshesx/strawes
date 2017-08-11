@@ -11,6 +11,7 @@
           :sort="column.sort"
           :highlight="column.highlight"
           :width="column.width"
+          :minWidth="column.minWidth"
           @changeSort="onSort(arguments[0], column, arguments[1])"
           @changeHighlight="onHighlight(column, arguments[0])"
           v-for="(column, key) in columns"
@@ -32,7 +33,7 @@
           <div class="mw-table-bd-col" v-if="isEnableSelections">
             <mw-table-check :checked="isOneSelected(item)" @click="onOneSelected(item)"></mw-table-check>
           </div>
-          <div class="mw-table-bd-col" :class="{ 'is-highlight': column.highlight }" v-for="column in columns" :style="[ calcWidth(column.width) ]" v-if="!column.hide">
+          <div class="mw-table-bd-col" :class="{ 'is-highlight': column.highlight }" v-for="column in columns" :style="[ calcWidth(column) ]" v-if="!column.hide">
             <!-- 组件自留的列展示方式：按钮 -->
             <div class="mw-table-bd-actions" v-if="column.name === '$action'">
               <mn-btn class="mw-table-bd-btn"
@@ -145,17 +146,21 @@
         this.scrollLeft = event.srcElement.scrollLeft
         this.scrollTop = event.srcElement.scrollTop
       },
-      calcWidth (width) {
-        if (isUndefined(width)) {
+      calcWidth (column) {
+        if (!isUndefined(column.minWidth)) {
+          return { flex: `1 0 ${column.minWidth}` }
+        }
+
+        if (isUndefined(column.width)) {
           return { width: '120px' }
         }
 
-        if (/^\d+&/.test(width)) {
-          return { flex: width }
+        if (/^\d+&/.test(column.width)) {
+          return { flex: column.width }
         }
 
         return {
-          width: width
+          width: column.width
         }
       },
       onSort (sortName, column, event) {
@@ -249,15 +254,17 @@
     position: absolute;
     display: flex;
     flex-wrap: nowrap;
+    min-width: 100%;
   }
 
   .mw-table-hd-col {
     padding: 1rem 1rem;
     font-weight: 500;
     transition-duration: 500ms;
+    flex-shrink: 0;
 
     &.is-highlight {
-      background: $highlight-bg;
+      background: $highlight-bg !important;
     }
   }
 
@@ -281,6 +288,7 @@
 
   .mw-table-bd-contents {
     position: absolute;
+    min-width: 100%;
   }
 
   .mw-table-bd-row {
@@ -288,7 +296,9 @@
     transition-duration: 500ms;
 
     &:nth-child(odd) {
-      background: rgba(0, 0, 0, 0.03);
+      .mw-table-bd-col {
+        background: rgba(0, 0, 0, 0.03);
+      }
     }
   }
 
@@ -297,9 +307,10 @@
     padding: 0.75rem 1rem;
     align-items: center;
     transition-duration: 500ms;
+    flex-shrink: 0;
 
     &.is-highlight {
-      background: $highlight-bg;
+      background: $highlight-bg !important;
     }
   }
 

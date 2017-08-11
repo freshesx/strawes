@@ -36,7 +36,8 @@
         }
       },
       highlight: Boolean,
-      width: [ String, Number ]
+      width: [ String, Number ],
+      minWidth: [ String ]
     },
     data () {
       return {
@@ -46,6 +47,10 @@
     },
     computed: {
       computedWidth () {
+        if (!isUndefined(this.minWidth)) {
+          return { flex: `1 0 ${this.minWidth}` }
+        }
+
         if (isUndefined(this.width)) {
           return { width: '120px' }
         }
