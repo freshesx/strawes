@@ -51,5 +51,16 @@ export default [
         route: { name: 'stylesLively' }
       }
     ]
+  },
+  {
+    label: '组件',
+    collapsed: true,
+    icon: require('vue-human-icons/js/ios/keypad-outline'),
+    children: [
+      {
+        label: '表格',
+        route: { name: 'table' }
+      }
+    ]
   }
 ]
