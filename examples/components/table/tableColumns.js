@@ -6,7 +6,7 @@ export default [
   {
     name: 'title',
     title: '影片名称',
-    width: '180px',
+    minWidth: '180px',
     sort: 'sortable'
   },
   {
@@ -22,7 +22,7 @@ export default [
   {
     name: 'actor',
     title: '主演',
-    width: '200px'
+    minWidth: '200px'
   },
   {
     name: 'tags',
