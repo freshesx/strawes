@@ -1,7 +1,7 @@
 <template>
   <div class="mw-crumb">
     <div class="mw-crumb-back">
-      <mn-btn class="has-one-padding-left" :icon="back" theme="secondary" size="sm">返回</mn-btn>
+      <mn-btn class="has-one-padding-left" :icon="back" theme="secondary" size="sm" @click="$router.go(-1)">返回</mn-btn>
     </div>
     <div class="mw-crumb-link">
       <a :href="calcLink(item)" v-for="(item, key) in matched" :key="key">{{ item.meta.title || '请为 meta.title 命名' }}</a>
