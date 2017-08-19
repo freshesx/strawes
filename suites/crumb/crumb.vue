@@ -4,9 +4,7 @@
       <mn-btn class="has-one-padding-left" :icon="back" theme="secondary" size="sm">返回</mn-btn>
     </div>
     <div class="mw-crumb-link">
-      <span v-for="(item, key) in matched" :key="key">
-        <a href="#">{{ item.meta.title || '请为 meta.title 命名' }}</a><span v-if="key !== matched.length - 1">&gt;</span>
-      </span>
+      <a :href="calcLink(item)" v-for="(item, key) in matched" :key="key">{{ item.meta.title || '请为 meta.title 命名' }}</a>
     </div>
   </div>
 </template>
@@ -29,6 +27,11 @@
       matched () {
         return this.$route.matched
       }
+    },
+    methods: {
+      calcLink (item) {
+        return this.$router.resolve(item.path).href
+      }
     }
   })
 </script>
@@ -45,15 +48,28 @@
 
   .mw-crumb-link {
     margin-left: 1rem;
-    > span > a {
-      font-size: 1.2rem;
-      color: #666;
+    display: flex;
+
+    > a {
+      display: block;
+      background: #d9d9d9;
+      height: 32px;
+      padding: 5px 0.75rem;
+      color: #000;
       text-decoration: none;
-      font-weight: 400;
-    }
-    > span > span {
-      font-size: 1.2rem;
-      margin: 0 0.5rem;
+      border-right: solid 1px rgba(0, 0, 0, 0.1);
+      font-size: 0.875rem;
+
+      &:first-child {
+        border-top-left-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+      }
+
+      &:last-child {
+        border-top-right-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+        border-right: none;
+      }
     }
   }
 </style>
