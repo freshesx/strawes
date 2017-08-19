@@ -14,7 +14,9 @@
       </div>
     </div>
     <div class="mw-frame-contents">
-      <slot name="contents"></slot>
+      <slot>
+        <router-view></router-view>
+      </slot>
     </div>
   </div>
 </template>
@@ -69,6 +71,7 @@
   }
 
   .mw-frame-contents {
+    position: relative;
     flex: 1;
   }
 </style>

@@ -80,5 +80,14 @@ export default [
     meta: {
       title: '文案'
     }
+  },
+  // 表格
+  {
+    path: '/table',
+    name: 'table',
+    component: resolve => { require(['../components/table'], resolve) },
+    meta: {
+      title: '表格'
+    }
   }
 ]
