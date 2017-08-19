@@ -83,11 +83,11 @@ export default [
   },
   // 表格
   {
-    path: '/table',
-    name: 'table',
-    component: resolve => { require(['../components/table'], resolve) },
+    path: '/table/example',
+    name: 'tableExample',
+    component: resolve => { require(['../components/table/example'], resolve) },
     meta: {
-      title: '表格'
+      title: '列表案例'
     }
   }
 ]

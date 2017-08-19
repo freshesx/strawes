@@ -53,12 +53,16 @@ export default [
     ]
   },
   {
-    label: '组件',
+    label: '列表模式',
     collapsed: true,
     icon: require('vue-human-icons/js/ios/keypad-outline'),
     children: [
       {
-        label: '表格',
+        label: '列表案例',
+        route: { name: 'tableExample' }
+      },
+      {
+        label: '分解',
         route: { name: 'table' }
       }
     ]
