@@ -16,7 +16,7 @@
   .mw-container {
     width: 100%;
     max-width: 1200px;
-    padding: 2rem;
+    padding: 1rem;
     margin: 0 auto;
   }
 </style>
