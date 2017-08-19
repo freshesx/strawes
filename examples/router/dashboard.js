@@ -89,5 +89,13 @@ export default [
     meta: {
       title: '列表案例'
     }
+  },
+  {
+    path: '/table/structure',
+    name: 'tableStructure',
+    component: resolve => { require(['../components/table/structure'], resolve) },
+    meta: {
+      title: '列表结构'
+    }
   }
 ]

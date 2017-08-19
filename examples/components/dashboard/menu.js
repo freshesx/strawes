@@ -62,8 +62,8 @@ export default [
         route: { name: 'tableExample' }
       },
       {
-        label: '分解',
-        route: { name: 'table' }
+        label: '列表结构',
+        route: { name: 'tableStructure' }
       }
     ]
   }
