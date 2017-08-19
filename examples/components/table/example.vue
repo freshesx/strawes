@@ -6,6 +6,27 @@
       </mn-section>
 
       <mn-section>
+        <mw-table-tool>
+          <mn-columns>
+            <mn-column desktop="4">
+              <mw-table-filter label="影片名称">
+                <mn-input v-model="models.title" placeholder="搜索名称"></mn-input>
+              </mw-table-filter>
+            </mn-column>
+            <mn-column desktop="8">
+              <mw-table-filter label="标签">
+                <div>
+                  <mn-tag :key="i" v-for="i in 2" :name="i === 2 ? 'black-lightest' : 'gray-darkest'">标签 {{ i }}</mn-tag>
+                </div>
+              </mw-table-filter>
+            </mn-column>
+          </mn-columns>
+          <template slot="action">
+            <mn-btn theme="primary" size="sm">查询</mn-btn>
+            <mn-btn theme="secondary-link" size="sm">导出 EXCEL</mn-btn>
+          </template>
+        </mw-table-tool>
+
         <mw-table-group>
           <mw-table :items="tableItems | updateItems"
             :columns="tableColumns"
