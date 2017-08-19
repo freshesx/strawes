@@ -1,48 +1,48 @@
 <template>
   <mn-scroller>
-    <mn-section class="has-two-padding-top">
-      <mn-letter>
-        <h2>表格</h2>
-      </mn-letter>
-    </mn-section>
+    <mw-container>
+      <mn-section>
+        <mw-crumb></mw-crumb>
+      </mn-section>
 
-    <mn-section>
-      <mw-table-group>
-        <mw-table :items="tableItems | updateItems"
-          :columns="tableColumns"
-          :selections.sync="selections"
-          :size="tableSize"
-          @clickRow="onRow"
-          @clickAction="onAction"
-          @changeSort="onSort"
-          @changeHighlight="onHighlight">
-          <template scope="scope" slot="cover">
-            <img :src="scope.item.cover" alt="scope.cover.title" height="80" style="display: block;">
+      <mn-section>
+        <mw-table-group>
+          <mw-table :items="tableItems | updateItems"
+            :columns="tableColumns"
+            :selections.sync="selections"
+            :size="tableSize"
+            @clickRow="onRow"
+            @clickAction="onAction"
+            @changeSort="onSort"
+            @changeHighlight="onHighlight">
+            <template scope="scope" slot="cover">
+              <img :src="scope.item.cover" alt="scope.cover.title" height="80" style="display: block;">
+            </template>
+            <template scope="scope" slot="tags">
+              <mn-tag bg="#ddd" v-for="(tag, key) in scope.item.tags" :key="key">{{ tag }}</mn-tag>
+            </template>
+            <template scope="scope" slot="action">
+              <mn-btn theme="primary-link" size="sm">查看影片</mn-btn>
+            </template>
+          </mw-table>
+
+          <template slot="action">
+            <mn-btn theme="primary" size="sm">新建影片</mn-btn>
+            <mn-btn theme="secondary-link" size="sm">批量导入</mn-btn>
           </template>
-          <template scope="scope" slot="tags">
-            <mn-tag bg="#ddd" v-for="(tag, key) in scope.item.tags" :key="key">{{ tag }}</mn-tag>
+
+          <template slot="view">
+            <mw-table-count :count="count" @changeCount="onCount"></mw-table-count>
+            <mw-table-column :columns="tableColumns" @changeHide="onHide"></mw-table-column>
+            <mw-table-view :size.sync="tableSize"></mw-table-view>
           </template>
-          <template scope="scope" slot="action">
-            <mn-btn theme="primary-link" size="sm">查看影片</mn-btn>
+
+          <template slot="paginate">
+            <mw-table-paginate :currentPage="currentPage" :totalPages="totalPages" @changePage="onPage"></mw-table-paginate>
           </template>
-        </mw-table>
-
-        <template slot="action">
-          <mn-btn theme="primary" size="sm">新建影片</mn-btn>
-          <mn-btn theme="secondary-link" size="sm">批量导入</mn-btn>
-        </template>
-
-        <template slot="view">
-          <mw-table-count :count="count" @changeCount="onCount"></mw-table-count>
-          <mw-table-column :columns="tableColumns" @changeHide="onHide"></mw-table-column>
-          <mw-table-view :size.sync="tableSize"></mw-table-view>
-        </template>
-
-        <template slot="paginate">
-          <mw-table-paginate :currentPage="currentPage" :totalPages="totalPages" @changePage="onPage"></mw-table-paginate>
-        </template>
-      </mw-table-group>
-    </mn-section>
+        </mw-table-group>
+      </mn-section>
+    </mw-container>
   </mn-scroller>
 </template>
 
@@ -53,11 +53,16 @@
   import tableColumns from './tableColumns'
   import axios from 'axios'
   import isUndefined from 'lodash/isUndefined'
+  import container from '../../../suites/container'
+  import crumb from '../../../suites/crumb'
+
   export default {
     components: {
       ...table.map(),
       ...tag.map(),
-      ...input.map()
+      ...input.map(),
+      ...container.map(),
+      ...crumb.map()
     },
     data () {
       return {
