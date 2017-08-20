@@ -42,15 +42,8 @@
               <mn-tag bg="#ddd" v-for="(tag, key) in scope.item.tags" :key="key">{{ tag }}</mn-tag>
             </template>
             <template scope="scope" slot="action">
-              <!-- <mn-link theme="secondary-outline" size="sm"></mn-link> -->
-              <mn-link theme="secondary-outline" size="sm">编辑</mn-link>
-              <mn-link theme="secondary-outline" size="sm">删除</mn-link>
-              <!-- <router-link :to="{ name: 'movie.edit', params: { movieId: scope.item.$key } }">
-                编辑
-              </router-link>
-              <router-link :to="{ name: 'movie.edit', params: { movieId: scope.item.$key } }">
-                删除
-              </router-link> -->
+              <mn-link class="has-none-padding-x" theme="secondary-link" size="sm" :icon="icons.edit"></mn-link>
+              <mn-link class="has-none-padding-x" theme="secondary-link" size="sm" :icon="icons.remove"></mn-link>
             </template>
           </mw-table>
 
@@ -102,6 +95,10 @@
         start: 0,
         total: 0,
         count: 20,
+        icons: {
+          edit: require('vue-human-icons/js/ios/copy-outline'),
+          remove: require('vue-human-icons/js/ios/trash-outline')
+        },
         models: {
           title: undefined
         }
