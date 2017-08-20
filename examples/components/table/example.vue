@@ -42,7 +42,15 @@
               <mn-tag bg="#ddd" v-for="(tag, key) in scope.item.tags" :key="key">{{ tag }}</mn-tag>
             </template>
             <template scope="scope" slot="action">
-              <mn-btn theme="primary-link" size="sm">查看影片</mn-btn>
+              <!-- <mn-link theme="secondary-outline" size="sm"></mn-link> -->
+              <mn-link theme="secondary-outline" size="sm">编辑</mn-link>
+              <mn-link theme="secondary-outline" size="sm">删除</mn-link>
+              <!-- <router-link :to="{ name: 'movie.edit', params: { movieId: scope.item.$key } }">
+                编辑
+              </router-link>
+              <router-link :to="{ name: 'movie.edit', params: { movieId: scope.item.$key } }">
+                删除
+              </router-link> -->
             </template>
           </mw-table>
 

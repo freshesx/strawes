@@ -1,7 +1,12 @@
 export default [
+  // {
+  //   name: 'cover',
+  //   title: '封面'
+  // },
   {
-    name: 'cover',
-    title: '封面'
+    name: 'action',
+    title: '操作',
+    width: '180px'
   },
   {
     name: 'title',
@@ -12,8 +17,7 @@ export default [
   {
     name: 'rating',
     title: '评分',
-    sort: 'desc',
-    highlight: true
+    sort: 'desc'
   },
   {
     name: 'director',
@@ -32,9 +36,5 @@ export default [
   {
     name: 'year',
     title: '年份'
-  },
-  {
-    name: 'action',
-    title: '操作'
   }
 ]
