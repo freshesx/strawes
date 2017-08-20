@@ -27,7 +27,7 @@
         </mw-table-tool>
 
         <mw-table-group>
-          <mw-table :items="tableItems | updateItems"
+          <mw-table :items="calcTableItems(tableItems)"
             :columns="tableColumns"
             :selections.sync="selections"
             :size="tableSize"
@@ -127,6 +127,21 @@
         this.start = response.data.start
         this.count = response.data.count
       },
+      // 重新计算 tableItems，使其符合 tableColumn 列的要求
+      calcTableItems (items) {
+        if (isUndefined(items)) return undefined
+        // @reference item => ({}) 是箭头函数特有的快捷方式
+        return items.map(item => ({
+          $key: item.id,
+          cover: item.images.small,
+          title: item.title,
+          director: item.directors.map(item => item.name).join(', '),
+          actor: item.casts.map(item => item.name).join(', '),
+          rating: item.rating.average,
+          tags: item.genres,
+          year: item.year
+        }))
+      },
       onSort (sortName, column) {
         this.$set(column, 'sort', sortName)
       },
@@ -145,23 +160,6 @@
     },
     created () {
       this.fetchMovie(this.start, this.count)
-    },
-    filters: {
-      updateItems (items) {
-        if (isUndefined(items)) return undefined
-        return items.map(item => {
-          return {
-            $key: item.id,
-            cover: item.images.small,
-            title: item.title,
-            director: item.directors.map(item => item.name).join(', '),
-            actor: item.casts.map(item => item.name).join(', '),
-            rating: item.rating.average,
-            tags: item.genres,
-            year: item.year
-          }
-        })
-      }
     }
   }
 </script>
