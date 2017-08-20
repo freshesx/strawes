@@ -122,17 +122,8 @@
       onSort (sortName, column) {
         this.$set(column, 'sort', sortName)
       },
-      onHighlight (highlight, column) {
-        this.$set(column, 'highlight', highlight)
-      },
       onHide (hide, column) {
         this.$set(column, 'hide', hide)
-      },
-      onAction (name, item) {
-        console.log('onAction', name, item)
-      },
-      onRow (item, event) {
-        console.log('onRow', item)
       },
       onCount (count) {
         this.fetchMovie(0, count)
