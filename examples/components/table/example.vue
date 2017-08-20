@@ -22,8 +22,7 @@
             </mn-column>
           </mn-columns>
           <template slot="action">
-            <mn-btn theme="primary" size="sm">查询</mn-btn>
-            <mn-btn theme="secondary-link" size="sm">导出 EXCEL</mn-btn>
+            <mn-btn theme="secondary" size="sm">查询</mn-btn>
           </template>
         </mw-table-tool>
 
@@ -49,6 +48,7 @@
 
           <template slot="action">
             <mn-btn theme="primary" size="sm">新建影片</mn-btn>
+            <mn-btn theme="secondary-link" size="sm">导出 EXCEL</mn-btn>
             <mn-btn theme="secondary-link" size="sm">批量导入</mn-btn>
           </template>
 
