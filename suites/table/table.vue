@@ -34,8 +34,11 @@
             <mw-table-check :checked="isOneSelected(item)" @click="onOneSelected(item)"></mw-table-check>
           </div>
           <div class="mw-table-bd-col" :class="{ 'is-highlight': column.highlight }" v-for="column in columns" :style="[ calcWidth(column) ]" v-if="!column.hide">
+            <div v-if="column.name === '$action'">
+              <mw-table-action :actions="column.actions"></mw-table-action>
+            </div>
             <!-- 用户定义的列展示方式 -->
-            <div v-if="$scopedSlots.hasOwnProperty(column.name)">
+            <div v-else-if="$scopedSlots.hasOwnProperty(column.name)">
               <slot :name="column.name" :item="item"></slot>
             </div>
             <!-- 默认展示方式 -->
@@ -53,12 +56,14 @@
   import isUndefined from 'lodash/isUndefined'
   import tableHeaderColumn from './_tableHeaderColumn'
   import tableCheck from './_tableCheck'
+  import tableAction from './_tableAction'
 
   export default new Element({
     name: 'mw-table',
     components: {
       ...tableHeaderColumn.inject(),
-      ...tableCheck.inject()
+      ...tableCheck.inject(),
+      ...tableAction.inject()
     },
     props: {
       /**
