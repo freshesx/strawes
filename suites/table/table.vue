@@ -34,18 +34,8 @@
             <mw-table-check :checked="isOneSelected(item)" @click="onOneSelected(item)"></mw-table-check>
           </div>
           <div class="mw-table-bd-col" :class="{ 'is-highlight': column.highlight }" v-for="column in columns" :style="[ calcWidth(column) ]" v-if="!column.hide">
-            <!-- 组件自留的列展示方式：按钮 -->
-            <div class="mw-table-bd-actions" v-if="column.name === '$action'">
-              <mn-btn class="mw-table-bd-btn"
-                :icon="button.icon"
-                :theme="button.theme || 'secondary-link'"
-                size="sm"
-                @click="onClickAction(button.name, item, arguments[1], arguments[0])"
-                v-for="(button, buttonIndex) in column.actions"
-                :key="buttonIndex">{{ button.title }}</mn-btn>
-            </div>
             <!-- 用户定义的列展示方式 -->
-            <div v-else-if="$scopedSlots.hasOwnProperty(column.name)">
+            <div v-if="$scopedSlots.hasOwnProperty(column.name)">
               <slot :name="column.name" :item="item"></slot>
             </div>
             <!-- 默认展示方式 -->
@@ -136,12 +126,6 @@
       }
     },
     methods: {
-      emitActions () {
-
-      },
-      emitChoices () {
-
-      },
       onScroll (event) {
         this.scrollLeft = event.srcElement.scrollLeft
         this.scrollTop = event.srcElement.scrollTop
@@ -171,10 +155,6 @@
       },
       onClickRow (item, event) {
         this.$emit('clickRow', item, event)
-      },
-      onClickAction (actionName, item, button, event) {
-        event.stopPropagation()
-        this.$emit('clickAction', actionName, item, button, event)
       },
       /**
        * 触发 全选 / 全不选 事件
