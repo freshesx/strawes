@@ -5,8 +5,10 @@
     </select>
     <div class="mw-table-paginate-btn" @click="onPrev">
       <mn-icon :name="icons.prev" :scale="0.8"></mn-icon>
+      上一页
     </div>
     <div class="mw-table-paginate-btn" @click="onNext">
+      下一页
       <mn-icon :name="icons.next" :scale="0.8"></mn-icon>
     </div>
   </div>
@@ -98,7 +100,6 @@
   }
 
   .mw-table-paginate-btn {
-    width: 2.25rem;
     height: 2.25rem;
     background: #fff;
     display: flex;
