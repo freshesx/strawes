@@ -20,14 +20,14 @@
       </div>
     </div>
 
-    <!-- 表格加载 -->
-    <div class="mw-table-loading" v-if="items === undefined">
-      <mn-loading-icon></mn-loading-icon> 努力加载中
-    </div>
-
     <!-- 表格主体 -->
-    <div class="mw-table-bd" style="height: 400px;" v-else @scroll="onScroll">
-      <div class="mw-table-bd-contents">
+    <div class="mw-table-bd" style="height: 400px;" @scroll="onScroll">
+      <!-- 加载层 -->
+      <div class="mw-table-bd-loading" v-if="items === undefined">
+        <mn-loading-icon class="has-two-margin-right"></mn-loading-icon>努力加载中
+      </div>
+      <!-- 表格主要内容 -->
+      <div class="mw-table-bd-contents" ref="contents">
         <div class="mw-table-bd-row" v-for="item in items" @click="onClickRow(item, $event)">
           <!-- 多选 -->
           <div class="mw-table-bd-col" v-if="isEnableSelections">
@@ -248,6 +248,19 @@
     &.is-shadow {
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
+  }
+
+  .mw-table-bd-loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    z-index: 100;
+    font-size: 1.25rem;
   }
 
   .mw-table-hd-contents {
