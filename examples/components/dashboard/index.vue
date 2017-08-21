@@ -11,6 +11,7 @@
         avator="https://ois1yok9v.qnssl.com/example-avator.png">
       </mw-profile>
     </div>
+    <router-view slot="contents"></router-view>
   </mw-frame>
 </template>
 

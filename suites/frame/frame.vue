@@ -14,9 +14,7 @@
       </div>
     </div>
     <div class="mw-frame-contents">
-      <slot>
-        <router-view></router-view>
-      </slot>
+      <slot name="contents"></slot>
     </div>
   </div>
 </template>
