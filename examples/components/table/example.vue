@@ -31,10 +31,7 @@
             :columns="tableColumns"
             :selections.sync="selections"
             :size="tableSize"
-            @clickRow="onRow"
-            @clickAction="onAction"
-            @changeSort="onSort"
-            @changeHighlight="onHighlight">
+            @changeSort="onSort">
             <template scope="scope" slot="cover">
               <img :src="scope.item.cover" alt="scope.cover.title" height="80" style="display: block;">
             </template>
