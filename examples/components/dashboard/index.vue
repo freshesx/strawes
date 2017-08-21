@@ -7,8 +7,7 @@
       <mw-menu :list="menu"></mw-menu>
     </mw-navigation>
     <div slot="information">
-      <mw-profile label="周聪"
-        avator="https://ois1yok9v.qnssl.com/example-avator.png">
+      <mw-profile label="周聪" :avator="avator">
       </mw-profile>
     </div>
     <router-view slot="contents"></router-view>
@@ -19,7 +18,8 @@
   export default {
     data () {
       return {
-        menu: require('./menu').default
+        menu: require('./menu').default,
+        avator: 'https://ois1yok9v.qnssl.com/example-avator.png'
       }
     }
   }
