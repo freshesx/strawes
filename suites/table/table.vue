@@ -75,6 +75,7 @@
        * @prop {String}          columns[].title              - 显示名称
        * @prop {String}          columns[].name               - 列唯一名称，$action 和 $key 为系统保留
        * @prop {String|Number}   columns[].width              - 列宽度，支持 width 和 flex
+       * @prop {String|Number}   columns[].minWidth           - 列最小宽度，支持 width 和 flex
        * @prop {String}          columns[].sort               - 筛选图标 none, sortable, desc, asc, 默认为 undefined
        * @prop {Boolean}         columns[].highlight          - 是否高亮
        * @prop {Array}           columns[].actions            - 事件按钮
