@@ -67,15 +67,7 @@
        * @prop {String|Number}   items[].$key                 - 表示行的唯一标志
        * @prop {Undefined}       items                        - 表示加载状态
        */
-      items: {
-        type: Array,
-        validator (value) {
-          if (isUndefined(value)) return true
-          if (value.length === 0) return true
-          if (value[0].hasOwnProperty('$key')) return true
-          return
-        }
-      },
+      items: Array,
 
       /**
        * 列配置
