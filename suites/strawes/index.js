@@ -5,6 +5,7 @@ import crumb from '../crumb'
 import frame from '../frame'
 import menu from '../menu'
 import navigation from '../navigation'
+import profile from '../profile'
 import table from '../table'
 
 export default new Suites([
@@ -14,5 +15,6 @@ export default new Suites([
   frame,
   menu,
   navigation,
+  profile,
   table
 ])
