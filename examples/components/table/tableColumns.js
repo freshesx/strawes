@@ -5,36 +5,36 @@ export default [
   // },
   {
     name: 'action',
-    title: '操作',
+    label: '操作',
     width: '100px'
   },
   {
     name: 'title',
-    title: '影片名称',
+    label: '影片名称',
     minWidth: '180px',
     sort: 'sortable'
   },
   {
     name: 'rating',
-    title: '评分',
+    label: '评分',
     sort: 'desc'
   },
   {
     name: 'director',
-    title: '导演'
+    label: '导演'
   },
   {
     name: 'actor',
-    title: '主演',
+    label: '主演',
     minWidth: '200px'
   },
   {
     name: 'tags',
-    title: '标签',
+    label: '标签',
     width: '200px'
   },
   {
     name: 'year',
-    title: '年份'
+    label: '年份'
   }
 ]

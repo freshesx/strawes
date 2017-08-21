@@ -7,7 +7,7 @@
           <mw-table-check :checked="allSelected" @click="onAllSelected"></mw-table-check>
         </div>
         <mw-table-header-column
-          :title="column.title"
+          :label="column.label"
           :sort="column.sort"
           :highlight="column.highlight"
           :width="column.width"
@@ -72,7 +72,7 @@
       /**
        * 列配置
        * @prop {Array}           columns                      -
-       * @prop {String}          columns[].title              - 显示名称
+       * @prop {String}          columns[].label              - 显示名称
        * @prop {String}          columns[].name               - 列唯一名称，$action 和 $key 为系统保留
        * @prop {String|Number}   columns[].width              - 列宽度，支持 width 和 flex
        * @prop {String|Number}   columns[].minWidth           - 列最小宽度，支持 width 和 flex

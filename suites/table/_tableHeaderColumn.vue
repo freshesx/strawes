@@ -1,8 +1,8 @@
 <template>
   <div class="mw-table-hd-col" :class="{ 'is-highlight': highlight }" :style="[ computedWidth ]">
     <div class="mw-table-sort-bar">
-      <div class="mw-table-sort-bar-title" @click.prevent.stop="onHighlight">
-        {{ title }}
+      <div class="mw-table-sort-bar-label" @click.prevent.stop="onHighlight">
+        {{ label }}
       </div>
       <div class="mw-table-sort-bar-action" v-if="sort !== 'none'">
         <div class="mw-table-sort-bar-dropup"
@@ -27,7 +27,7 @@
       ...iconElement.inject()
     },
     props: {
-      title: String,
+      label: String,
       sort: {
         type: String,
         default: 'none',
@@ -91,7 +91,7 @@
     margin-left: 1rem;
   }
 
-  .mw-table-sort-bar-title {
+  .mw-table-sort-bar-label {
     cursor: pointer;
   }
 
