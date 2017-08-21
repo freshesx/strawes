@@ -7,7 +7,9 @@
       <mw-menu :list="menu"></mw-menu>
     </mw-navigation>
     <div slot="information">
-      ChaselWu
+      <mw-profile label="周聪"
+        avator="https://ois1yok9v.qnssl.com/example-avator.png">
+      </mw-profile>
     </div>
   </mw-frame>
 </template>
