@@ -6,7 +6,7 @@ export default [
   {
     name: 'action',
     title: '操作',
-    width: '180px'
+    width: '100px'
   },
   {
     name: 'title',
