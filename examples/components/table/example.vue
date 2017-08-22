@@ -27,10 +27,10 @@
         </mw-table-tool>
 
         <mw-table-group>
-          <mw-table :items="calcTableItems(tableItems)"
+          <mw-table
+            :items="calcTableItems(tableItems)"
             :columns="tableColumns"
             :selections.sync="selections"
-            :size="tableSize"
             @changeSort="onSort">
             <template scope="scope" slot="cover">
               <img :src="scope.item.cover" alt="scope.cover.title" height="80" style="display: block;">
@@ -51,8 +51,6 @@
 
           <template slot="view">
             <mw-table-count :count="count" @changeCount="onCount"></mw-table-count>
-            <mw-table-column :columns="tableColumns" @changeHide="onHide"></mw-table-column>
-            <mw-table-view :size.sync="tableSize"></mw-table-view>
           </template>
 
           <template slot="paginate">
@@ -85,17 +83,17 @@
     },
     data () {
       return {
+        // 列
         tableColumns,
+        // 数据
         tableItems: undefined,
-        tableSize: 'sm',
+        // 多选存储
         selections: [],
+        // 页码
         start: 0,
         total: 0,
         count: 20,
-        icons: {
-          edit: require('vue-human-icons/js/ios/copy-outline'),
-          remove: require('vue-human-icons/js/ios/trash-outline')
-        },
+        // 筛选字段
         models: {
           title: undefined
         }
@@ -125,19 +123,16 @@
         if (isUndefined(items)) return undefined
         return items.map(calcTableItem)
       },
+      // 监听筛选条件的修改
       onSort (sortName, column) {
         this.$set(column, 'sort', sortName)
       },
-      onHide (hide, column) {
-        this.$set(column, 'hide', hide)
-      },
+      // 修改每页显示多少条
       onCount (count) {
         this.fetchMovie(0, count)
       },
+      // 修改页码
       onPage (currentPage) {
-        // start 为 查询的下标数
-        // count 为 查询多少条结果
-        // currentPage 为当前页数，所以 currentPage 要转化成相应的 start
         this.fetchMovie((currentPage - 1) * this.count, this.count)
       }
     },
