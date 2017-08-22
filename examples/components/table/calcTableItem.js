@@ -1,12 +1,14 @@
 export default function calcTableItem (item) {
   return {
     $key: item.id,
-    cover: item.images.small,
+    cover: item.image,
     title: item.title,
-    director: item.directors.map(item => item.name).join(', '),
-    actor: item.casts.map(item => item.name).join(', '),
-    rating: item.rating.average,
-    tags: item.genres,
+    director: item.directors,
+    actor: item.casts,
+    rating: item.rating,
+    stars: item.stars,
+    collectCount: item.collectCount,
+    tags: item.genres.split(','),
     year: item.year,
     actions: [
       {

@@ -32,5 +32,13 @@ export default [
   {
     name: 'year',
     label: '年份'
+  },
+  {
+    name: 'stars',
+    label: '收藏数'
+  },
+  {
+    name: 'collectCount',
+    label: '评论数'
   }
 ]

@@ -71,7 +71,7 @@
   import input from 'vue-human/suites/input'
   import tableColumns from './tableColumns'
   import calcTableItem from './calcTableItem'
-  import axios from 'axios'
+  import { listMovies } from '../../axios/movies'
 
   export default {
     components: {
@@ -97,15 +97,13 @@
       }
     },
     methods: {
-      async fetchMovie (start, count) {
+      async fetchMovie (offset, limit) {
         this.tableItems = undefined
-        const response = await axios.get('/v2/movie/in_theaters', {
-          params: { start, count }
-        })
+        const response = await listMovies({ offset, limit })
         this.tableItems = response.data.subjects
         this.total = response.data.total
-        this.queries.offset = response.data.start
-        this.queries.rows = response.data.count
+        this.queries.offset = response.data.offset
+        this.queries.rows = response.data.limit
       },
       // 重新计算 tableItems，使其符合 tableColumn 列的要求
       calcTableItems (items) {
