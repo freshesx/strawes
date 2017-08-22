@@ -50,13 +50,13 @@
           </template>
 
           <template slot="view">
-            <mw-table-count :count="queries.rows" @changeCount="onCount"></mw-table-count>
+            <mw-table-count :count="queries.limit" @changeCount="onCount"></mw-table-count>
           </template>
 
           <template slot="paginate">
             <mw-table-paginate
               :total="total"
-              :rows="queries.rows"
+              :limit="queries.limit"
               :offset="queries.offset"
               @change="onPage"></mw-table-paginate>
           </template>
@@ -92,7 +92,7 @@
         queries: {
           title: undefined,
           offset: 0,
-          rows: 20
+          limit: 20
         }
       }
     },
@@ -103,7 +103,7 @@
         this.tableItems = response.data.subjects
         this.total = response.data.total
         this.queries.offset = response.data.offset
-        this.queries.rows = response.data.limit
+        this.queries.limit = response.data.limit
       },
       // 重新计算 tableItems，使其符合 tableColumn 列的要求
       calcTableItems (items) {
@@ -119,11 +119,11 @@
       },
       // 修改页码
       onPage (offset) {
-        this.fetchMovie(offset, this.queries.rows)
+        this.fetchMovie(offset, this.queries.limit)
       }
     },
     created () {
-      this.fetchMovie(this.queries.offset, this.queries.rows)
+      this.fetchMovie(this.queries.offset, this.queries.limit)
     }
   }
 </script>

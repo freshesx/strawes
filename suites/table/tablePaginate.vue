@@ -21,10 +21,10 @@
    * 表格分页功能
    * @module suites/table/tablePaginate
    * @example
-   * <mw-table-paginate :total="50" :rows="20" :offset="0" @change="onPage"></mw-table-paginate>
+   * <mw-table-paginate :total="50" :limit="20" :offset="0" @change="onPage"></mw-table-paginate>
    *
    * @param {Number}    total      - 总条数
-   * @param {Number}    rows       - 每页显示多少行
+   * @param {Number}    limit       - 每页显示多少行
    * @param {Number}    [offset]   - 起始数
    */
   export default new Element({
@@ -34,7 +34,7 @@
         type: Number,
         require: true
       },
-      rows: {
+      limit: {
         type: Number,
         require: true
       },
@@ -42,10 +42,10 @@
     },
     computed: {
       totalPages () {
-        return Math.ceil(this.total / this.rows)
+        return Math.ceil(this.total / this.limit)
       },
       currentPage () {
-        return Math.ceil(this.offset / this.rows) + 1
+        return Math.ceil(this.offset / this.limit) + 1
       }
     },
     data () {
@@ -60,13 +60,13 @@
       // 上一页
       onPrev (event) {
         if (this.currentPage > 1) {
-          this.emitChange(this.offset - this.rows, event)
+          this.emitChange(this.offset - this.limit, event)
         }
       },
       // 下一页
       onNext (event) {
         if (this.currentPage < this.totalPages) {
-          this.emitChange(this.offset + this.rows, event)
+          this.emitChange(this.offset + this.limit, event)
         }
       },
       // 指定页码
