@@ -112,7 +112,6 @@
     },
     methods: {
       async fetchMovie (start, count) {
-        console.log('start', start, count)
         this.tableItems = undefined
         const response = await axios.get('/v2/movie/in_theaters', {
           params: { start, count }
