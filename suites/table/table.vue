@@ -34,11 +34,8 @@
             <mw-table-check :checked="isOneSelected(item)" @click="onOneSelected(item)"></mw-table-check>
           </div>
           <div class="mw-table-bd-col" :class="{ 'is-highlight': column.highlight }" v-for="column in columns" :style="[ calcWidth(column) ]" v-if="!column.hide">
-            <div v-if="column.name === '$action'">
-              <mw-table-action :actions="column.actions"></mw-table-action>
-            </div>
             <!-- 用户定义的列展示方式 -->
-            <div v-else-if="$scopedSlots.hasOwnProperty(column.name)">
+            <div v-if="$scopedSlots.hasOwnProperty(column.name)">
               <slot :name="column.name" :item="item"></slot>
             </div>
             <!-- 默认展示方式 -->
@@ -56,14 +53,12 @@
   import isUndefined from 'lodash/isUndefined'
   import tableHeaderColumn from './_tableHeaderColumn'
   import tableCheck from './_tableCheck'
-  import tableAction from './_tableAction'
 
   export default new Element({
     name: 'mw-table',
     components: {
       ...tableHeaderColumn.inject(),
-      ...tableCheck.inject(),
-      ...tableAction.inject()
+      ...tableCheck.inject()
     },
     props: {
       /**
@@ -83,10 +78,6 @@
        * @prop {String|Number}   columns[].minWidth           - 列最小宽度，支持 width 和 flex
        * @prop {String}          columns[].sort               - 筛选图标 none, sortable, desc, asc, 默认为 undefined
        * @prop {Boolean}         columns[].highlight          - 是否高亮
-       * @prop {Array}           columns[].actions            - 事件按钮
-       * @prop {*}               columns[].actions[].icon     - 事件按钮的图标
-       * @prop {String}          columns[].actions[].name     - 事件按钮的唯一名称
-       * @prop {String}          columns[].actions[].title    - 事件按钮的显示名称
        */
       columns: {
         type: Array,
