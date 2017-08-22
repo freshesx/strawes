@@ -21,21 +21,31 @@
    * 表格分页功能
    * @module suites/table/tablePaginate
    * @example
-   * <mw-table-paginate :currentPage="1" :totalPages="10" @changePage="onPage"></mw-table-paginate>
+   * <mw-table-paginate :total="50" :rows="20" :offset="0" @change="onPage"></mw-table-paginate>
    *
-   * @param {Number}     [currentPage=1]      - 当前页码
-   * @param {Number}     [totalPages=1]       - 总页数
+   * @param {Number}    total      - 总条数
+   * @param {Number}    rows       - 每页显示多少行
+   * @param {Number}    [offset]   - 起始数
    */
   export default new Element({
     name: 'mw-table-paginate',
     props: {
-      currentPage: {
+      total: {
         type: Number,
-        default: 1
+        require: true
       },
-      totalPages: {
+      rows: {
         type: Number,
-        default: 1
+        require: true
+      },
+      offset: Number
+    },
+    computed: {
+      totalPages () {
+        return Math.ceil(this.total / this.rows)
+      },
+      currentPage () {
+        return Math.ceil(this.offset / this.rows) + 1
       }
     },
     data () {
@@ -50,18 +60,20 @@
       // 上一页
       onPrev (event) {
         if (this.currentPage > 1) {
-          this.emitChange(this.currentPage - 1, event)
+          this.emitChange(this.offset - this.rows, event)
         }
       },
       // 下一页
       onNext (event) {
         if (this.currentPage < this.totalPages) {
-          this.emitChange(this.currentPage + 1, event)
+          this.emitChange(this.offset + this.rows, event)
         }
       },
       // 指定页码
       onPage (event) {
-        this.emitChange(parseInt(event.target.value), event)
+        const newPage = parseInt(event.target.value)
+        const newOffset = (newPage - 1) * this.count
+        this.emitChange(newOffset, event)
       },
       /**
        * 触发起始点和条数修改的事件
@@ -69,8 +81,8 @@
        * @prop  {Number}   currentPage   - 当前页码
        * @prop  {Event}    event         - DOM Event 对象
        */
-      emitChange (currentPage, event) {
-        this.$emit('changePage', currentPage, event)
+      emitChange (offset, event) {
+        this.$emit('change', offset, event)
       }
     }
   })
