@@ -70,6 +70,7 @@
   import tag from 'vue-human/suites/tag'
   import input from 'vue-human/suites/input'
   import tableColumns from './tableColumns'
+  import calcTableItem from './calcTableItem'
   import axios from 'axios'
   import isUndefined from 'lodash/isUndefined'
   import container from '../../../suites/container'
@@ -124,17 +125,7 @@
       // 重新计算 tableItems，使其符合 tableColumn 列的要求
       calcTableItems (items) {
         if (isUndefined(items)) return undefined
-        // @reference item => ({}) 是箭头函数特有的快捷方式
-        return items.map(item => ({
-          $key: item.id,
-          cover: item.images.small,
-          title: item.title,
-          director: item.directors.map(item => item.name).join(', '),
-          actor: item.casts.map(item => item.name).join(', '),
-          rating: item.rating.average,
-          tags: item.genres,
-          year: item.year
-        }))
+        return items.map(calcTableItem)
       },
       onSort (sortName, column) {
         this.$set(column, 'sort', sortName)
