@@ -6,14 +6,15 @@
       :title="action.label"
       theme="secondary-link"
       size="sm"
-      :icon="action.icon"></mn-link>
+      :icon="action.icon"
+      :href="action.href"
+      :to="action.to"></mn-link>
     <mn-btn class="has-none-padding-x"
       theme="secondary-link"
       :icon="more"
       size="sm"
       @click.stop.prevent="onMore"
-      v-if="actions.length > 3"
-      ></mn-btn>
+      v-if="actions.length > 3"></mn-btn>
     <!-- Action Sheet -->
     <mn-action-sheet :visible.sync="showActionSheet" v-if="actions.length > 3">
       <mn-card rounded>
