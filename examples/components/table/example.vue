@@ -54,7 +54,11 @@
           </template>
 
           <template slot="paginate">
-            <mw-table-paginate :currentPage="currentPage" :totalPages="totalPages" @changePage="onPage"></mw-table-paginate>
+            <mw-table-paginate
+              :total="total"
+              :rows="count"
+              :offset="start"
+              @change="onPage"></mw-table-paginate>
           </template>
         </mw-table-group>
       </mn-section>
@@ -124,8 +128,8 @@
         this.fetchMovie(0, count)
       },
       // 修改页码
-      onPage (currentPage) {
-        this.fetchMovie((currentPage - 1) * this.count, this.count)
+      onPage (offset) {
+        this.fetchMovie(offset, this.count)
       }
     },
     created () {
