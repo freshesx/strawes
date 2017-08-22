@@ -69,7 +69,6 @@
   import tableColumns from './tableColumns'
   import calcTableItem from './calcTableItem'
   import axios from 'axios'
-  import isUndefined from 'lodash/isUndefined'
   import container from '../../../suites/container'
   import crumb from '../../../suites/crumb'
 
@@ -120,8 +119,7 @@
       },
       // 重新计算 tableItems，使其符合 tableColumn 列的要求
       calcTableItems (items) {
-        if (isUndefined(items)) return undefined
-        return items.map(calcTableItem)
+        if (Array.isArray(items)) return items.map(calcTableItem)
       },
       // 监听筛选条件的修改
       onSort (sortName, column) {
