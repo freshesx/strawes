@@ -96,14 +96,6 @@
         }
       }
     },
-    computed: {
-      currentPage () {
-        return Math.ceil(this.queries.offset / this.queries.rows) + 1
-      },
-      totalPages () {
-        return Math.ceil(this.total / this.queries.rows)
-      }
-    },
     methods: {
       async fetchMovie (start, count) {
         this.tableItems = undefined
