@@ -63,22 +63,16 @@
 </template>
 
 <script>
-  import table from '../../../suites/table'
   import tag from 'vue-human/suites/tag'
   import input from 'vue-human/suites/input'
   import tableColumns from './tableColumns'
   import calcTableItem from './calcTableItem'
   import axios from 'axios'
-  import container from '../../../suites/container'
-  import crumb from '../../../suites/crumb'
 
   export default {
     components: {
-      ...table.map(),
       ...tag.map(),
-      ...input.map(),
-      ...container.map(),
-      ...crumb.map()
+      ...input.map()
     },
     data () {
       return {
