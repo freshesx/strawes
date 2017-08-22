@@ -50,7 +50,7 @@
           </template>
 
           <template slot="view">
-            <mw-table-count :count="queries.limit" @changeCount="onCount"></mw-table-count>
+            <mw-table-limit :limit="queries.limit" :limitOptions="[10, 20, 50]" @update:limit="onLimit"></mw-table-limit>
           </template>
 
           <template slot="paginate">
@@ -92,7 +92,7 @@
         queries: {
           title: undefined,
           offset: 0,
-          limit: 20
+          limit: 10
         }
       }
     },
@@ -114,8 +114,8 @@
         this.$set(column, 'sort', sortName)
       },
       // 修改每页显示多少条
-      onCount (count) {
-        this.fetchMovie(0, count)
+      onLimit (limit) {
+        this.fetchMovie(0, limit)
       },
       // 修改页码
       onPage (offset) {
