@@ -10,24 +10,24 @@ export default function calcTableItem (item) {
     year: item.year,
     actions: [
       {
+        name: 'publish',
+        icon: require('vue-human-icons/js/ios/box'),
+        label: '可见'
+      },
+      {
         name: 'edit',
-        icon: require('vue-human-icons/js/ios/copy-outline'),
+        icon: require('vue-human-icons/js/ios/copy'),
         label: '编辑'
       },
       {
-        name: 'remove',
-        icon: require('vue-human-icons/js/ios/trash-outline'),
-        label: '删除'
-      },
-      {
         name: 'view',
-        icon: require('vue-human-icons/js/ios/trash-outline'),
+        icon: require('vue-human-icons/js/ios/bookmarks'),
         label: '查看'
       },
       {
-        name: 'test',
-        icon: require('vue-human-icons/js/ios/trash-outline'),
-        label: '测试'
+        name: 'remove',
+        icon: require('vue-human-icons/js/ios/trash'),
+        label: '移除'
       }
     ]
   }
