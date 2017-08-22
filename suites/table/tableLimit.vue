@@ -1,7 +1,7 @@
 <template>
-  <div class="mw-table-count">
-    <select class="mw-table-count-select" :value="count" @change="onCount">
-      <option :value="item" v-for="item in countOptions">{{ item }} 条</option>
+  <div class="mw-table-limit">
+    <select class="mw-table-limit-select" :value="limit" @change="onLimit">
+      <option :value="item" v-for="item in limitOptions">{{ item }} 条</option>
     </select>
   </div>
 </template>
@@ -12,17 +12,17 @@
   /**
    * 调整表格每页显示多少条的组件
    * @module /suites/table/tableCount
-   * @param {Number}  [count=20]                   - 选择的每页显示多少条
-   * @param {Array}   [countOptions=[20, 50, 100]] - 默认供选择每页显示多少条
+   * @param {Number}  [limit=20]                   - 选择的每页显示多少条
+   * @param {Array}   [limitOptions=[20, 50, 100]] - 默认供选择每页显示多少条
    */
   export default new Element({
-    name: 'mw-table-count',
+    name: 'mw-table-limit',
     props: {
-      count: {
+      limit: {
         type: Number,
         default: 20
       },
-      countOptions: {
+      limitOptions: {
         type: Array,
         default () {
           return [ 20, 50, 100 ]
@@ -31,30 +31,30 @@
     },
     methods: {
       // 修改每页显示多少条
-      onCount (event) {
+      onLimit (event) {
         this.emitChange(parseInt(event.target.value), event)
       },
       /**
        * 触发修改每页显示多少条
        * @event changeCount
-       * @prop  {Number}   count     - 新的每页显示多少条
+       * @prop  {Number}   limit     - 新的每页显示多少条
        * @prop  {Event}    event     - DOM Event
        */
-      emitChange (count, event) {
-        this.$emit('changeCount', count, event)
+      emitChange (limit, event) {
+        this.$emit('update:limit', limit, event)
       }
     }
   })
 </script>
 
 <style lang="scss">
-  .mw-table-count {
+  .mw-table-limit {
     display: flex;
     align-items: center;
     height: 2.25rem;
   }
 
-  .mw-table-count-select {
+  .mw-table-limit-select {
     font-size: 1rem;
     background: transparent;
     height: 2.25rem;
