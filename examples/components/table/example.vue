@@ -10,7 +10,7 @@
           <mn-columns>
             <mn-column desktop="4">
               <mw-table-filter label="影片名称">
-                <mn-input v-model="models.title" placeholder="搜索名称"></mn-input>
+                <mn-input v-model="queries.title" placeholder="搜索名称"></mn-input>
               </mw-table-filter>
             </mn-column>
             <mn-column desktop="8">
@@ -50,14 +50,14 @@
           </template>
 
           <template slot="view">
-            <mw-table-count :count="count" @changeCount="onCount"></mw-table-count>
+            <mw-table-count :count="queries.rows" @changeCount="onCount"></mw-table-count>
           </template>
 
           <template slot="paginate">
             <mw-table-paginate
               :total="total"
-              :rows="count"
-              :offset="start"
+              :rows="queries.rows"
+              :offset="queries.offset"
               @change="onPage"></mw-table-paginate>
           </template>
         </mw-table-group>
@@ -86,22 +86,22 @@
         tableItems: undefined,
         // 多选存储
         selections: [],
-        // 页码
-        start: 0,
+        // 总条数
         total: 0,
-        count: 20,
         // 筛选字段
-        models: {
-          title: undefined
+        queries: {
+          title: undefined,
+          offset: 0,
+          rows: 20
         }
       }
     },
     computed: {
       currentPage () {
-        return Math.ceil(this.start / this.count) + 1
+        return Math.ceil(this.queries.offset / this.queries.rows) + 1
       },
       totalPages () {
-        return Math.ceil(this.total / this.count)
+        return Math.ceil(this.total / this.queries.rows)
       }
     },
     methods: {
@@ -112,8 +112,8 @@
         })
         this.tableItems = response.data.subjects
         this.total = response.data.total
-        this.start = response.data.start
-        this.count = response.data.count
+        this.queries.offset = response.data.start
+        this.queries.rows = response.data.count
       },
       // 重新计算 tableItems，使其符合 tableColumn 列的要求
       calcTableItems (items) {
@@ -129,11 +129,11 @@
       },
       // 修改页码
       onPage (offset) {
-        this.fetchMovie(offset, this.count)
+        this.fetchMovie(offset, this.queries.rows)
       }
     },
     created () {
-      this.fetchMovie(this.start, this.count)
+      this.fetchMovie(this.queries.offset, this.queries.rows)
     }
   }
 </script>
