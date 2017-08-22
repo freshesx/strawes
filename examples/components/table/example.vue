@@ -38,9 +38,8 @@
             <template scope="scope" slot="tags">
               <mn-tag bg="#ddd" v-for="(tag, key) in scope.item.tags" :key="key">{{ tag }}</mn-tag>
             </template>
-            <template scope="scope" slot="action">
-              <mn-link class="has-none-padding-x" title="编辑" theme="secondary-link" size="sm" :icon="icons.edit"></mn-link>
-              <mn-link class="has-none-padding-x" title="删除" theme="secondary-link" size="sm" :icon="icons.remove"></mn-link>
+            <template scope="scope" slot="actions">
+              <mw-link-bar :actions="scope.item.actions"></mw-link-bar>
             </template>
           </mw-table>
 

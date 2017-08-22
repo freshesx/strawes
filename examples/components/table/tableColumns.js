@@ -1,12 +1,8 @@
 export default [
-  // {
-  //   name: 'cover',
-  //   title: '封面'
-  // },
   {
-    name: 'action',
+    name: 'actions',
     label: '操作',
-    width: '100px'
+    width: '120px'
   },
   {
     name: 'title',
