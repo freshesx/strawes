@@ -22,7 +22,7 @@
             </mn-column>
           </mn-columns>
           <template slot="action">
-            <mn-btn theme="secondary" size="sm">查询</mn-btn>
+            <mn-btn theme="secondary" size="sm" @click="onQuery">查询</mn-btn>
           </template>
         </mw-table-tool>
 
@@ -71,6 +71,7 @@
   import input from 'vue-human/suites/input'
   import tableColumns from './tableColumns'
   import calcTableItem from './calcTableItem'
+  import Query from 'vue-human/utils/Query'
   import { listMovies } from '../../axios/movies'
 
   export default {
@@ -97,13 +98,11 @@
       }
     },
     methods: {
-      async fetchMovie (offset, limit) {
+      async fetchMovie () {
         this.tableItems = undefined
-        const response = await listMovies({ offset, limit })
+        const response = await listMovies(this.queries)
         this.tableItems = response.data.subjects
         this.total = response.data.total
-        this.queries.offset = response.data.offset
-        this.queries.limit = response.data.limit
       },
       // 重新计算 tableItems，使其符合 tableColumn 列的要求
       calcTableItems (items) {
@@ -115,14 +114,26 @@
       },
       // 修改每页显示多少条
       onLimit (limit) {
-        this.fetchMovie(0, limit)
+        this.queries.offset = 0
+        this.queries.limit = limit
+        this.onQuery()
       },
       // 修改页码
       onPage (offset) {
-        this.fetchMovie(offset, this.queries.limit)
+        this.queries.offset = offset
+        this.onQuery()
+      },
+      onQuery () {
+        this.$router.push({ query: this.queries })
+      }
+    },
+    watch: {
+      '$route.query' () {
+        this.fetchMovie()
       }
     },
     created () {
+      Query.sync(this.$route.query, this.queries)
       this.fetchMovie(this.queries.offset, this.queries.limit)
     }
   }
