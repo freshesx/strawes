@@ -72,7 +72,7 @@
       // 指定页码
       onPage (event) {
         const newPage = parseInt(event.target.value)
-        const newOffset = (newPage - 1) * this.count
+        const newOffset = (newPage - 1) * this.limit
         this.emitChange(newOffset, event)
       },
       /**
