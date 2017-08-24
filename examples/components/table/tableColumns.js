@@ -7,8 +7,7 @@ export default [
   {
     name: 'title',
     label: '影片名称',
-    minWidth: '180px',
-    sort: 'sortable'
+    minWidth: '180px'
   },
   {
     name: 'collectCount',
@@ -16,8 +15,7 @@ export default [
   },
   {
     name: 'rating',
-    label: '评分',
-    sort: 'desc'
+    label: '评分'
   },
   {
     name: 'director',
