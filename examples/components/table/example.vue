@@ -23,6 +23,7 @@
           </mn-columns>
           <template slot="action">
             <mn-btn theme="secondary" size="sm" @click="onQuery">查询</mn-btn>
+            <mn-btn theme="secondary-link" size="sm" @click="onReset">重置</mn-btn>
           </template>
         </mw-table-tool>
 
@@ -121,21 +122,21 @@
       onSort (sortName, column) {
         this.$set(column, 'sort', sortName)
       },
+      // 重置 searches 值
       // 修改每页显示多少条
       // 重置回页码首页
-      // 重置 searches 值
       onLimit (limit) {
+        this.onReset()
         this.queries.limit = limit
         this.queries.offset = 0
-        this.searches = Q.reset(this.searches, Q.parse(this.$route.query))
         this.$router.push({ query: this.queries })
         this.listMovies()
       },
-      // 修改页码
       // 重置 searches 值
+      // 修改页码
       onPage (offset) {
+        this.onReset()
         this.queries.offset = offset
-        this.searches = Q.reset(this.searches, Q.parse(this.$route.query))
         this.$router.push({ query: this.queries })
         this.listMovies()
       },
@@ -146,13 +147,17 @@
         this.queries = Q.merge(this.queries, this.searches)
         this.$router.push({ query: this.queries })
         this.listMovies()
+      },
+      // 重置 searches 值
+      onReset () {
+        this.searches = Q.reset(this.searches, Q.parse(this.$route.query))
       }
     },
     // 合并 $route.query 至 queries
     // 重置 $route.query 至 searches
     created () {
+      this.onReset()
       this.queries = Q.merge(this.queries, Q.parse(this.$route.query))
-      this.searches = Q.reset(this.searches, Q.parse(this.$route.query))
       this.listMovies()
     }
   }
