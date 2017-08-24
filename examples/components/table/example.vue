@@ -100,6 +100,7 @@
           offset: 0,
           limit: 10
         },
+        // 评论数的筛选条件
         collectOptions: [
           { label: '未排序', value: undefined },
           { label: '从多至少', value: 'desc' },
