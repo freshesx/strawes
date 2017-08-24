@@ -10,7 +10,7 @@
           <mn-columns>
             <mn-column desktop="4">
               <mw-table-filter label="影片名称">
-                <mn-input v-model="queries.title" placeholder="搜索名称"></mn-input>
+                <mn-input v-model="searches.title" placeholder="搜索名称"></mn-input>
               </mw-table-filter>
             </mn-column>
             <mn-column desktop="8">
@@ -89,7 +89,11 @@
         selections: [],
         // 总条数
         total: 0,
-        // 筛选字段
+        // search 筛选
+        searches: {
+          title: undefined
+        },
+        // Query 请求字段
         queries: {
           title: undefined,
           offset: 0,
@@ -98,11 +102,15 @@
       }
     },
     methods: {
-      async fetchMovie () {
+      async listMovies () {
         this.tableItems = undefined
         const response = await listMovies(this.queries)
         this.tableItems = response.data.subjects
         this.total = response.data.total
+      },
+      notifyQueries () {
+        this.listMovies()
+        this.$router.push({ query: this.queries })
       },
       // 重新计算 tableItems，使其符合 tableColumn 列的要求
       calcTableItems (items) {
@@ -116,25 +124,22 @@
       onLimit (limit) {
         this.queries.offset = 0
         this.queries.limit = limit
-        this.onQuery()
+        this.notifyQueries()
       },
       // 修改页码
       onPage (offset) {
         this.queries.offset = offset
-        this.onQuery()
+        this.notifyQueries()
       },
       onQuery () {
-        this.$router.push({ query: this.queries })
-      }
-    },
-    watch: {
-      '$route.query' () {
-        this.fetchMovie()
+        this.queries.offset = 0
+        Object.assign(this.queries, this.searches)
+        this.notifyQueries()
       }
     },
     created () {
       Query.sync(this.$route.query, this.queries)
-      this.fetchMovie(this.queries.offset, this.queries.limit)
+      this.listMovies()
     }
   }
 </script>
