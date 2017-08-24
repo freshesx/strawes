@@ -71,7 +71,7 @@
   import input from 'vue-human/suites/input'
   import tableColumns from './tableColumns'
   import calcTableItem from './calcTableItem'
-  import Query from 'vue-human/utils/Query'
+  import Q from 'vue-human/utils/Query'
   import { listMovies } from '../../axios/movies'
 
   export default {
@@ -107,16 +107,6 @@
         this.tableItems = response.data.subjects
         this.total = response.data.total
       },
-      replaceSearches () {
-        this.searches = Query.replace(this.searches, Query.format(this.$route.query))
-      },
-      mergeQueries () {
-        this.queries = Query.merge(this.queries, Query.format(this.$route.query))
-      },
-      notifyQueries () {
-        this.$router.push({ query: this.queries })
-        this.listMovies()
-      },
       // 重新计算 tableItems，使其符合 tableColumn 列的要求
       calcTableItems (items) {
         if (Array.isArray(items)) return items.map(calcTableItem)
@@ -129,24 +119,27 @@
       onLimit (limit) {
         this.queries.offset = 0
         this.queries.limit = limit
-        this.replaceSearches()
-        this.notifyQueries()
+        this.searches = Q.reset(this.searches, Q.parse(this.$route.query))
+        this.$router.push({ query: this.queries })
+        this.listMovies()
       },
       // 修改页码
       onPage (offset) {
         this.queries.offset = offset
-        this.replaceSearches()
-        this.notifyQueries()
+        this.searches = Q.reset(this.searches, Q.parse(this.$route.query))
+        this.$router.push({ query: this.queries })
+        this.listMovies()
       },
       onQuery () {
-        this.queries = Query.merge(this.queries, this.searches)
         this.queries.offset = 0
-        this.notifyQueries()
+        this.queries = Q.merge(this.queries, this.searches)
+        this.$router.push({ query: this.queries })
+        this.listMovies()
       }
     },
     created () {
-      this.mergeQueries()
-      this.replaceSearches()
+      this.queries = Q.merge(this.queries, Q.parse(this.$route.query))
+      this.searches = Q.reset(this.searches, Q.parse(this.$route.query))
       this.listMovies()
     }
   }
