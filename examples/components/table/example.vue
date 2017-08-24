@@ -21,7 +21,6 @@
           </mn-columns>
           <template slot="action">
             <mn-btn theme="secondary" size="sm" @click="onQuery">查询</mn-btn>
-            <mn-btn theme="secondary-link" size="sm" @click="onReset">重置</mn-btn>
           </template>
         </mw-table-tool>
 
