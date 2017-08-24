@@ -94,6 +94,8 @@
           title: undefined
         },
         // Query 请求字段
+        // queries 是传递给 $router.push 的数据
+        // searches 是维护输入表单的数据，两者非同步关系，需手动查询
         queries: {
           offset: 0,
           limit: 10
@@ -101,13 +103,17 @@
       }
     },
     methods: {
+      // 设置 undefined，显示为加载状态
+      // 请求服务器数据
+      // 合并表格数据
+      // 合并总条数
       async listMovies () {
         this.tableItems = undefined
         const response = await listMovies(this.queries)
         this.tableItems = response.data.subjects
         this.total = response.data.total
       },
-      // 重新计算 tableItems，使其符合 tableColumn 列的要求
+      // 计算 tableItems，使其符合 tableColumn 列的要求
       calcTableItems (items) {
         if (Array.isArray(items)) return items.map(calcTableItem)
       },
@@ -116,20 +122,25 @@
         this.$set(column, 'sort', sortName)
       },
       // 修改每页显示多少条
+      // 重置回页码首页
+      // 重置 searches 值
       onLimit (limit) {
-        this.queries.offset = 0
         this.queries.limit = limit
+        this.queries.offset = 0
         this.searches = Q.reset(this.searches, Q.parse(this.$route.query))
         this.$router.push({ query: this.queries })
         this.listMovies()
       },
       // 修改页码
+      // 重置 searches 值
       onPage (offset) {
         this.queries.offset = offset
         this.searches = Q.reset(this.searches, Q.parse(this.$route.query))
         this.$router.push({ query: this.queries })
         this.listMovies()
       },
+      // 重置回页码首页
+      // 将 searches 合并至 queries
       onQuery () {
         this.queries.offset = 0
         this.queries = Q.merge(this.queries, this.searches)
@@ -137,6 +148,8 @@
         this.listMovies()
       }
     },
+    // 合并 $route.query 至 queries
+    // 重置 $route.query 至 searches
     created () {
       this.queries = Q.merge(this.queries, Q.parse(this.$route.query))
       this.searches = Q.reset(this.searches, Q.parse(this.$route.query))
