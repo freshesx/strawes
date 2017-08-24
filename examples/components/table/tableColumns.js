@@ -11,6 +11,10 @@ export default [
     sort: 'sortable'
   },
   {
+    name: 'collectCount',
+    label: '评论数'
+  },
+  {
     name: 'rating',
     label: '评分',
     sort: 'desc'
@@ -36,9 +40,5 @@ export default [
   {
     name: 'stars',
     label: '收藏数'
-  },
-  {
-    name: 'collectCount',
-    label: '评论数'
   }
 ]
