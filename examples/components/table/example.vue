@@ -161,6 +161,7 @@
     },
     // 合并 $route.query 至 queries
     // 重置 $route.query 至 searches
+    // 为什么使用 Q 对象 @see(@link(/docs/table-query.graffle))
     created () {
       this.onReset()
       this.queries = Q.merge(this.queries, Q.parse(this.$route.query))
