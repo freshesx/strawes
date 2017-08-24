@@ -68,6 +68,7 @@
 <script>
   import input from 'vue-human/suites/input'
   import select from 'vue-human/suites/select'
+  import tag from 'vue-human/suites/tag'
   import tableColumns from './tableColumns'
   import calcTableItem from './calcTableItem'
   import Q from 'vue-human/utils/Query'
@@ -76,7 +77,8 @@
   export default {
     components: {
       ...input.map(),
-      ...select.map()
+      ...select.map(),
+      ...tag.map()
     },
     data () {
       return {
