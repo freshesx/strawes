@@ -8,6 +8,17 @@
 
         <mn-section>
           <mn-card>
+            <mn-card-item><h5>如何做搜索与 url 同步</h5></mn-card-item>
+            <mn-card-item>
+              <mn-card-body>
+                <p>主要通过 Query 对象</p>
+              </mn-card-body>
+            </mn-card-item>
+          </mn-card>
+        </mn-section>
+
+        <mn-section>
+          <mn-card>
             <mn-card-item><h5>筛选区域常见的类型</h5></mn-card-item>
             <mn-card-item>
               <mn-card-body>
