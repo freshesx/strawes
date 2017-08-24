@@ -21,7 +21,7 @@
     </div>
 
     <!-- 表格主体 -->
-    <div class="mw-table-bd" style="height: 400px;" @scroll="onScroll">
+    <div class="mw-table-bd" @scroll="onScroll" :style="{ 'min-height': '400px', height: `${bodyHeight}px` }">
       <!-- 加载层 -->
       <div class="mw-table-bd-loading" v-if="items === undefined">
         <mn-loading-icon class="has-two-margin-right"></mn-loading-icon>努力加载中
@@ -105,7 +105,8 @@
     data () {
       return {
         scrollLeft: 0,
-        scrollTop: 0
+        scrollTop: 0,
+        bodyHeight: 400
       }
     },
     computed: {
@@ -202,7 +203,19 @@
         }
         // 检查是否包含
         return this.selections.includes(item.$key)
+      },
+      watchContentHeight () {
+        setInterval(() => {
+          const offsetHeight = this.$refs.contents.offsetHeight
+          if (offsetHeight && this.bodyHeight !== offsetHeight) {
+            this.bodyHeight = offsetHeight
+          }
+        }, 1000)
       }
+    },
+    mounted () {
+      // @todo 暂时不建议使用该功能，性能较差，且交互不合理
+      // this.watchContentHeight()
     }
   })
 </script>
