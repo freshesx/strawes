@@ -14,10 +14,8 @@
               </mw-table-filter>
             </mn-column>
             <mn-column desktop="8">
-              <mw-table-filter label="标签">
-                <div>
-                  <mn-tag :key="i" v-for="i in 2" :name="i === 2 ? 'black-lightest' : 'gray-darkest'">标签 {{ i }}</mn-tag>
-                </div>
+              <mw-table-filter label="评论数">
+                <mn-select v-model="searches.collect" :options="collectOptions"></mn-select>
               </mw-table-filter>
             </mn-column>
           </mn-columns>
@@ -68,8 +66,8 @@
 </template>
 
 <script>
-  import tag from 'vue-human/suites/tag'
   import input from 'vue-human/suites/input'
+  import select from 'vue-human/suites/select'
   import tableColumns from './tableColumns'
   import calcTableItem from './calcTableItem'
   import Q from 'vue-human/utils/Query'
@@ -77,8 +75,8 @@
 
   export default {
     components: {
-      ...tag.map(),
-      ...input.map()
+      ...input.map(),
+      ...select.map()
     },
     data () {
       return {
@@ -92,7 +90,8 @@
         total: 0,
         // search 筛选
         searches: {
-          title: undefined
+          title: undefined,
+          collect: undefined
         },
         // Query 请求字段
         // queries 是传递给 $router.push 的数据
@@ -100,7 +99,12 @@
         queries: {
           offset: 0,
           limit: 10
-        }
+        },
+        collectOptions: [
+          { label: '未排序', value: undefined },
+          { label: '从多至少', value: 'desc' },
+          { label: '从少至多', value: 'asc' }
+        ]
       }
     },
     methods: {
