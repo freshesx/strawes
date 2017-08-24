@@ -95,7 +95,6 @@
         },
         // Query 请求字段
         queries: {
-          title: undefined,
           offset: 0,
           limit: 10
         }
@@ -108,9 +107,15 @@
         this.tableItems = response.data.subjects
         this.total = response.data.total
       },
+      replaceSearches () {
+        this.searches = Query.replace(this.searches, Query.format(this.$route.query))
+      },
+      mergeQueries () {
+        this.queries = Query.merge(this.queries, Query.format(this.$route.query))
+      },
       notifyQueries () {
-        this.listMovies()
         this.$router.push({ query: this.queries })
+        this.listMovies()
       },
       // 重新计算 tableItems，使其符合 tableColumn 列的要求
       calcTableItems (items) {
@@ -124,21 +129,24 @@
       onLimit (limit) {
         this.queries.offset = 0
         this.queries.limit = limit
+        this.replaceSearches()
         this.notifyQueries()
       },
       // 修改页码
       onPage (offset) {
         this.queries.offset = offset
+        this.replaceSearches()
         this.notifyQueries()
       },
       onQuery () {
+        this.queries = Query.merge(this.queries, this.searches)
         this.queries.offset = 0
-        Object.assign(this.queries, this.searches)
         this.notifyQueries()
       }
     },
     created () {
-      Query.sync(this.$route.query, this.queries)
+      this.mergeQueries()
+      this.replaceSearches()
       this.listMovies()
     }
   }
