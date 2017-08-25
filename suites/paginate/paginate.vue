@@ -1,6 +1,9 @@
 <template>
   <div class="mw-paginate">
     <div class="mw-paginate-btns">
+      <span class="mw-paginate-link" v-if="!hideTotalPages">
+        共 {{ totalPages }} 页
+      </span>
       <a class="mw-paginate-link"
         :href="resolveLink(currentPage - 1)"
         @click="onClick($event, currentPage - 1)" v-if="currentPage > 1">上一页</a>
@@ -38,6 +41,7 @@
    * @param {Number}    limit          - 每页显示多少行
    * @param {Number}    offset         - 起始数
    * @param {Number}    [gutters=2]    - 前后展示多少位的页码
+   * @param {Boolean}   hideTotalPages - 隐藏总页数
    */
   export default new Element({
     name: 'mw-paginate',
@@ -57,7 +61,8 @@
       gutters: {
         type: Number,
         default: 2
-      }
+      },
+      hideTotalPages: Boolean
     },
     computed: {
       totalPages () {
