@@ -22,6 +22,9 @@
       <a class="mw-paginate-link"
         :href="resolveLink(currentPage + 1)"
         @click="onClick($event, currentPage + 1)" v-if="currentPage < totalPages">下一页</a>
+      <form :action="resolveLink(jumpPageNumber)" @submit="onSubmit($event, jumpPageNumber)">
+        <input type="text" class="mw-paginate-control" placeholder="跳转" v-model="jumpPageNumber">
+      </form>
     </div>
   </div>
 </template>
@@ -63,6 +66,11 @@
         default: 2
       },
       hideTotalPages: Boolean
+    },
+    data () {
+      return {
+        jumpPageNumber: undefined
+      }
     },
     computed: {
       totalPages () {
@@ -108,6 +116,13 @@
       onClick (event, pageNumber) {
         const queries = this.resolveQueries(pageNumber)
         this.$emit('click', event, queries)
+      },
+      onSubmit (event, jumpPageNumber) {
+        if (!Number.isInteger(parseInt(jumpPageNumber)) ||
+            jumpPageNumber > this.totalPages ||
+            jumpPageNumber < 1) {
+          event.preventDefault()
+        }
       }
     }
   })
@@ -142,5 +157,21 @@
       background: $green;
       color: #fff;
     }
+  }
+
+  .mw-paginate-control {
+    $gutter: 0.25rem;
+
+    display: block;
+    border: none;
+    background: #eee;
+    margin-left: 0.5rem;
+    border-radius: 0.25rem;
+    width: 3rem;
+    height: 1.5rem + $gutter * 2;
+    padding: $gutter $gutter * 2;
+    line-height: 1.5;
+    outline: none;
+    text-align: right;
   }
 </style>
