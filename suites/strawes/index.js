@@ -6,6 +6,7 @@ import frame from '../frame'
 import linkBar from '../linkBar'
 import menu from '../menu'
 import navigation from '../navigation'
+import paginate from '../paginate'
 import profile from '../profile'
 import table from '../table'
 
@@ -17,6 +18,7 @@ export default new Suites([
   linkBar,
   menu,
   navigation,
+  paginate,
   profile,
   table
 ])
