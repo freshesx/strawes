@@ -5,14 +5,14 @@
         共 {{ totalPages }} 页
       </span>
       <a class="mw-paginate-link"
-        :href="resolveLink(currentPage - 1)"
+        :href="buildUrl(currentPage - 1)"
         @click="onClick($event, currentPage - 1)" v-if="currentPage > 1">上一页</a>
       <span class="mw-paginate-link" v-if="showPageSets[0] > 1">
         ...
       </span>
       <a class="mw-paginate-link"
         :class="{ 'is-active': currentPage === pageNumber }"
-        :href="resolveLink(pageNumber)"
+        :href="buildUrl(pageNumber)"
         :key="pageNumber"
         @click="onClick($event, pageNumber)"
         v-for="pageNumber in showPageSets">{{ pageNumber }}</a>
@@ -20,9 +20,9 @@
         ...
       </span>
       <a class="mw-paginate-link"
-        :href="resolveLink(currentPage + 1)"
+        :href="buildUrl(currentPage + 1)"
         @click="onClick($event, currentPage + 1)" v-if="currentPage < totalPages">下一页</a>
-      <form :action="resolveLink(jumpPageNumber)" @submit="onSubmit($event, jumpPageNumber)">
+      <form :action="buildUrl(jumpPageNumber)" @submit="onSubmit($event, jumpPageNumber)">
         <input type="text" class="mw-paginate-control" placeholder="跳转" v-model="jumpPageNumber">
       </form>
     </div>
@@ -106,15 +106,15 @@
       }
     },
     methods: {
-      resolveQueries (pageNumber) {
+      resolve (pageNumber) {
         const offset = (pageNumber - 1) * this.limit
         return Q.merge(Q.parse(this.$route.query), { offset })
       },
-      resolveLink (pageNumber) {
-        return this.$router.resolve({ query: this.resolveQueries(pageNumber) }).href
+      buildUrl (pageNumber) {
+        return this.$router.resolve({ query: this.resolve(pageNumber) }).href
       },
       onClick (event, pageNumber) {
-        const queries = this.resolveQueries(pageNumber)
+        const queries = this.resolve(pageNumber)
         this.$emit('click', event, queries)
       },
       onSubmit (event, jumpPageNumber) {
