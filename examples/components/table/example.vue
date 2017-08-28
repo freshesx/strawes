@@ -6,7 +6,7 @@
       </mn-section>
 
       <mn-section>
-        <table-search></table-search>
+        <table-search :searches="queries"></table-search>
 
         <mw-table-group>
           <mw-table
@@ -68,7 +68,14 @@
         // 多选存储
         selections: [],
         // 总条数
-        total: 0
+        total: 0,
+        // 请求关键词
+        queries: {},
+        // 请求关键词的默认值
+        defaultQueries: {
+          limit: 10,
+          offset: 0
+        }
       }
     },
     methods: {
@@ -81,7 +88,7 @@
         this.tableItems = undefined
 
         // 合并 url query 至 data
-        this.queries = Q.merge(this.queries, Q.parse(this.$route.query))
+        this.queries = Q.merge(this.defaultQueries, Q.parse(this.$route.query))
 
         // 请求数据
         const response = await listMovies(this.queries)
@@ -94,6 +101,7 @@
       },
       onLimit (limit) {
         const queries = Q.merge(Q.parse(this.$route.query), { limit })
+        queries.offset = 0
         this.$router.push({ query: queries })
       }
     },

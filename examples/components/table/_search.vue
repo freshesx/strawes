@@ -1,0 +1,69 @@
+<template>
+  <div>
+    <mw-table-tool>
+      <mn-columns>
+        <mn-column desktop="4">
+          <mw-table-filter label="影片名称">
+            <mn-input v-model="models.title" placeholder="搜索名称"></mn-input>
+          </mw-table-filter>
+        </mn-column>
+        <mn-column desktop="8">
+          <mw-table-filter label="评论数">
+            <mn-select v-model="models.collect" :options="collectOptions"></mn-select>
+          </mw-table-filter>
+        </mn-column>
+      </mn-columns>
+      <template slot="action">
+        <mn-link :href="queryUrl" theme="secondary" size="sm">查询</mn-link>
+      </template>
+    </mw-table-tool>
+  </div>
+</template>
+
+<script>
+  import input from 'vue-human/suites/input'
+  import select from 'vue-human/suites/select'
+  import Q from 'vue-human/utils/Query'
+
+  export default {
+    components: {
+      ...input.map(),
+      ...select.map()
+    },
+    props: {
+      searches: {
+        type: Object,
+        default () {
+          return {}
+        }
+      }
+    },
+    data () {
+      return {
+        // search 筛选
+        models: {
+          title: undefined,
+          collect: undefined
+        },
+        // 评论数的筛选条件
+        collectOptions: [
+          { label: '未排序', value: undefined },
+          { label: '从多至少', value: 'desc' },
+          { label: '从少至多', value: 'asc' }
+        ]
+      }
+    },
+    watch: {
+      searches () {
+        this.models = Q.reset(this.models, this.searches)
+      }
+    },
+    computed: {
+      queryUrl () {
+        const queries = Q.merge(Q.parse(this.$route.query), this.models)
+        queries.offset = 0
+        return this.$router.resolve({ query: queries }).href
+      }
+    }
+  }
+</script>
