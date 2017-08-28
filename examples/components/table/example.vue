@@ -128,6 +128,10 @@
       // 计算 tableItems，使其符合 tableColumn 列的要求
       calcTableItems (items) {
         if (Array.isArray(items)) return items.map(calcTableItem)
+      },
+      onLimit (limit) {
+        const queries = Q.merge(Q.parse(this.$route.query), { limit })
+        this.$router.push({ query: queries })
       }
     },
     watch: {
