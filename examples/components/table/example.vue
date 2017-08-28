@@ -6,23 +6,7 @@
       </mn-section>
 
       <mn-section>
-        <mw-table-tool>
-          <mn-columns>
-            <mn-column desktop="4">
-              <mw-table-filter label="影片名称">
-                <mn-input v-model="searches.title" placeholder="搜索名称"></mn-input>
-              </mw-table-filter>
-            </mn-column>
-            <mn-column desktop="8">
-              <mw-table-filter label="评论数">
-                <mn-select v-model="searches.collect" :options="collectOptions"></mn-select>
-              </mw-table-filter>
-            </mn-column>
-          </mn-columns>
-          <template slot="action">
-            <mn-btn theme="secondary" size="sm" @click="onQuery">查询</mn-btn>
-          </template>
-        </mw-table-tool>
+        <table-search></table-search>
 
         <mw-table-group>
           <mw-table
@@ -63,8 +47,7 @@
 </template>
 
 <script>
-  import input from 'vue-human/suites/input'
-  import select from 'vue-human/suites/select'
+  import tableSearch from './_search'
   import tag from 'vue-human/suites/tag'
   import tableColumns from './tableColumns'
   import calcTableItem from './calcTableItem'
@@ -73,9 +56,8 @@
 
   export default {
     components: {
-      ...input.map(),
-      ...select.map(),
-      ...tag.map()
+      ...tag.map(),
+      tableSearch
     },
     data () {
       return {
@@ -86,25 +68,7 @@
         // 多选存储
         selections: [],
         // 总条数
-        total: 0,
-        // search 筛选
-        searches: {
-          title: undefined,
-          collect: undefined
-        },
-        // Query 请求字段
-        // queries 是传递给 $router.push 的数据
-        // searches 是维护输入表单的数据，两者非同步关系，需手动查询
-        queries: {
-          offset: 0,
-          limit: 10
-        },
-        // 评论数的筛选条件
-        collectOptions: [
-          { label: '未排序', value: undefined },
-          { label: '从多至少', value: 'desc' },
-          { label: '从少至多', value: 'asc' }
-        ]
+        total: 0
       }
     },
     methods: {
