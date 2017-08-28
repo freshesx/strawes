@@ -77,7 +77,7 @@
         return Math.ceil(this.total / this.limit)
       },
       currentPage () {
-        return Math.ceil(this.offset / this.limit) + 1
+        return this.jumpPageNumber = Math.ceil(this.offset / this.limit) + 1
       },
       showPageSets () {
         // 比如说前 3，后 3，则小于等于 7 时全部显示
