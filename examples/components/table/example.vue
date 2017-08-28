@@ -52,11 +52,10 @@
           </template>
 
           <template slot="paginate">
-            <mw-table-paginate
+            <mw-paginate
               :total="total"
               :limit="queries.limit"
-              :offset="queries.offset"
-              @change="onPage"></mw-table-paginate>
+              :offset="queries.offset"></mw-paginate>
           </template>
         </mw-table-group>
       </mn-section>
@@ -115,7 +114,13 @@
       // 合并表格数据
       // 合并总条数
       async listMovies () {
+        // 设置为加载状态
         this.tableItems = undefined
+
+        // 合并 url query 至 data
+        this.queries = Q.merge(this.queries, Q.parse(this.$route.query))
+
+        // 请求数据
         const response = await listMovies(this.queries)
         this.tableItems = response.data.subjects
         this.total = response.data.total
@@ -123,48 +128,15 @@
       // 计算 tableItems，使其符合 tableColumn 列的要求
       calcTableItems (items) {
         if (Array.isArray(items)) return items.map(calcTableItem)
-      },
-      // 监听筛选条件的修改
-      onSort (sortName, column) {
-        this.$set(column, 'sort', sortName)
-      },
-      // 重置 searches 值
-      // 修改每页显示多少条
-      // 重置回页码首页
-      onLimit (limit) {
-        this.onReset()
-        this.queries.limit = limit
-        this.queries.offset = 0
-        this.$router.push({ query: this.queries })
-        this.listMovies()
-      },
-      // 重置 searches 值
-      // 修改页码
-      onPage (offset) {
-        this.onReset()
-        this.queries.offset = offset
-        this.$router.push({ query: this.queries })
-        this.listMovies()
-      },
-      // 重置回页码首页
-      // 将 searches 合并至 queries
-      onQuery () {
-        this.queries.offset = 0
-        this.queries = Q.merge(this.queries, this.searches)
-        this.$router.push({ query: this.queries })
-        this.listMovies()
-      },
-      // 重置 searches 值
-      onReset () {
-        this.searches = Q.reset(this.searches, Q.parse(this.$route.query))
       }
     },
-    // 合并 $route.query 至 queries
-    // 重置 $route.query 至 searches
-    // 为什么使用 Q 对象 @see(@link(/docs/table-query.graffle))
+    watch: {
+      '$route.query' () {
+        this.listMovies()
+      }
+    },
+    // 初始化数据
     created () {
-      this.onReset()
-      this.queries = Q.merge(this.queries, Q.parse(this.$route.query))
       this.listMovies()
     }
   }
