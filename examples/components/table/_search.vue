@@ -30,14 +30,6 @@
       ...input.map(),
       ...select.map()
     },
-    props: {
-      searches: {
-        type: Object,
-        default () {
-          return {}
-        }
-      }
-    },
     data () {
       return {
         // search 筛选
@@ -51,11 +43,6 @@
           { label: '从多至少', value: 'desc' },
           { label: '从少至多', value: 'asc' }
         ]
-      }
-    },
-    watch: {
-      searches () {
-        this.models = Q.reset(this.models, this.searches)
       }
     },
     computed: {

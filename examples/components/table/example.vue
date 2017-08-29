@@ -6,7 +6,7 @@
       </mn-section>
 
       <mn-section>
-        <table-search :searches="queries"></table-search>
+        <table-search></table-search>
 
         <mw-table-group>
           <mw-table
