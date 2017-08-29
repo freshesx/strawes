@@ -35,7 +35,7 @@
           </template>
 
           <template slot="view">
-            <mw-table-limit :limit="queries.limit" :limitOptions="[10, 20, 50]"></mw-table-limit>
+            <mw-limit :limit="queries.limit" :limitOptions="[10, 20, 50]"></mw-limit>
           </template>
 
           <template slot="paginate">
