@@ -51,12 +51,12 @@
     computed: {
       queryUrl () {
         const queries = Q.merge(Q.parse(this.$route.query), this.models)
-        queries.offset = 0
+        queries.page = 1
         return this.$router.resolve({ query: queries }).href
       },
       resetUrl () {
         const queries = Q.merge(Q.parse(this.$route.query), defaultModels)
-        queries.offset = 0
+        queries.page = 1
         return this.$router.resolve({ query: queries }).href
       }
     },

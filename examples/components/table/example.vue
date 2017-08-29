@@ -35,13 +35,13 @@
           </template>
 
           <template slot="view">
-            <mw-limit :limit="queries.limit" :limitOptions="[10, 20, 50]"></mw-limit>
+            <mw-limit :limit="models.limit" :limitOptions="[10, 20, 50]"></mw-limit>
           </template>
 
           <template slot="paginate">
             <mw-paginate
               :totalPages="totalPages"
-              :currentPage="queries.page"></mw-paginate>
+              :currentPage="models.page"></mw-paginate>
           </template>
         </mw-table-group>
       </mn-section>
@@ -57,7 +57,7 @@
   import Q from 'vue-human/utils/Query'
   import { listMovies } from '../../axios/movies'
 
-  const defaultQueries = {
+  const defaultModels = {
     page: 1,
     limit: 10
   }
@@ -80,7 +80,7 @@
         // 总页数
         totalPages: 1,
         // 请求关键词
-        queries: Q.merge({}, defaultQueries)
+        models: Q.merge({}, defaultModels)
       }
     },
     methods: {
@@ -93,10 +93,10 @@
         this.tableItems = undefined
 
         // 合并 url query 至 data
-        this.queries = Q.merge(defaultQueries, Q.parse(this.$route.query))
+        this.models = Q.merge(defaultModels, Q.parse(this.$route.query))
 
         // 请求数据
-        const response = await listMovies(this.queries)
+        const response = await listMovies(this.models)
         this.tableItems = response.data.subjects
         this.totalItems = response.data.page.totalItems
         this.totalPages = response.data.page.totalPages
