@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <form :action="queryUrl">
     <mw-table-tool>
       <mn-columns>
         <mn-column desktop="4">
@@ -17,7 +17,7 @@
         <mn-link :href="queryUrl" theme="secondary" size="sm">查询</mn-link>
       </template>
     </mw-table-tool>
-  </div>
+  </form>
 </template>
 
 <script>
