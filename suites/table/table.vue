@@ -118,6 +118,10 @@
           return false
         }
 
+        if (this.items.length === 0) {
+          return false
+        }
+
         return this.items.every(item => {
           return this.selections.includes(item.$key)
         })
