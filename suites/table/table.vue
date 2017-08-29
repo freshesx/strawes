@@ -23,8 +23,11 @@
     <!-- 表格主体 -->
     <div class="mw-table-bd" @scroll="onScroll" :style="{ 'min-height': '400px', height: `${bodyHeight}px` }">
       <!-- 加载层 -->
-      <div class="mw-table-bd-loading" v-if="items === undefined">
+      <div class="mw-table-bd-tip" v-if="items === undefined">
         <mn-loading-icon class="has-two-margin-right"></mn-loading-icon>努力加载中
+      </div>
+      <div class="mw-table-bd-tip" v-if="items.length === 0">
+        没有搜索到相关内容
       </div>
       <!-- 表格主要内容 -->
       <div class="mw-table-bd-contents" ref="contents">
@@ -240,7 +243,7 @@
     }
   }
 
-  .mw-table-bd-loading {
+  .mw-table-bd-tip {
     position: absolute;
     width: 100%;
     height: 100%;
