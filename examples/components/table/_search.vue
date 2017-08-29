@@ -15,6 +15,7 @@
       </mn-columns>
       <template slot="action">
         <mn-link :href="queryUrl" theme="secondary" size="sm">查询</mn-link>
+        <mn-link :href="resetUrl" theme="secondary-link" size="sm">重置</mn-link>
       </template>
     </mw-table-tool>
   </form>
@@ -25,6 +26,11 @@
   import select from 'vue-human/suites/select'
   import Q from 'vue-human/utils/Query'
 
+  const defaultModels = {
+    title: undefined,
+    collect: undefined
+  }
+
   export default {
     components: {
       ...input.map(),
@@ -33,10 +39,7 @@
     data () {
       return {
         // search 筛选
-        models: {
-          title: undefined,
-          collect: undefined
-        },
+        models: Q.merge({}, defaultModels),
         // 评论数的筛选条件
         collectOptions: [
           { label: '未排序', value: undefined },
@@ -50,6 +53,16 @@
         const queries = Q.merge(Q.parse(this.$route.query), this.models)
         queries.offset = 0
         return this.$router.resolve({ query: queries }).href
+      },
+      resetUrl () {
+        const queries = Q.merge(Q.parse(this.$route.query), defaultModels)
+        queries.offset = 0
+        return this.$router.resolve({ query: queries }).href
+      }
+    },
+    watch: {
+      '$route.query' () {
+        this.models = Q.merge(defaultModels, Q.parse(this.$route.query))
       }
     }
   }
