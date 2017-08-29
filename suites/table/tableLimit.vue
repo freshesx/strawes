@@ -8,6 +8,7 @@
 
 <script>
   import Element from 'vue-human/utils/Element'
+  import Q from 'vue-human/utils/Query'
 
   /**
    * 调整表格每页显示多少条的组件
@@ -32,16 +33,10 @@
     methods: {
       // 修改每页显示多少条
       onLimit (event) {
-        this.emitChange(parseInt(event.target.value), event)
-      },
-      /**
-       * 触发修改每页显示多少条
-       * @event changeCount
-       * @prop  {Number}   limit     - 新的每页显示多少条
-       * @prop  {Event}    event     - DOM Event
-       */
-      emitChange (limit, event) {
-        this.$emit('update:limit', limit, event)
+        const limit = parseInt(event.target.value)
+        const queries = Q.merge(Q.parse(this.$route.query), { limit })
+        this.$emit('change', event, queries, limit)
+        return this.$router.push({ query: queries })
       }
     }
   })
