@@ -8,6 +8,10 @@
       <mn-section>
         <table-search></table-search>
 
+        <mw-alert-bar theme="info">
+          符合条件的结果共 “{{ total }}” 项
+        </mw-alert-bar>
+
         <mw-table-group>
           <mw-table
             :items="calcTableItems(tableItems)"
