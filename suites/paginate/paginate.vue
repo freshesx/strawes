@@ -22,7 +22,7 @@
       <a class="mw-paginate-link"
         :href="buildUrl(currentPage + 1)"
         @click="onClick($event, currentPage + 1)" v-if="currentPage < totalPages">下一页</a>
-      <form :action="buildUrl(jumpPageNumber)" @submit="onSubmit($event, jumpPageNumber)">
+      <form :action="buildUrl(jumpPageNumber)" @submit="onSubmit($event, jumpPageNumber)" v-if="totalPages !== 0">
         <input type="text" class="mw-paginate-control" placeholder="跳转" v-model="jumpPageNumber">
       </form>
     </div>
