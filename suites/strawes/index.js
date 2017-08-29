@@ -4,6 +4,7 @@ import brand from '../brand'
 import container from '../container'
 import crumb from '../crumb'
 import frame from '../frame'
+import limit from '../limit'
 import linkBar from '../linkBar'
 import menu from '../menu'
 import navigation from '../navigation'
@@ -17,6 +18,7 @@ export default new Suites([
   container,
   crumb,
   frame,
+  limit,
   linkBar,
   menu,
   navigation,

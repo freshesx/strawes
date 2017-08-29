@@ -1,6 +1,6 @@
 <template>
-  <div class="mw-table-limit">
-    <select class="mw-table-limit-select" :value="limit" @change="onLimit">
+  <div class="mw-limit">
+    <select class="mw-limit-select" :value="limit" @change="onLimit">
       <option :value="item" v-for="item in limitOptions">{{ item }} 条</option>
     </select>
   </div>
@@ -17,7 +17,7 @@
    * @param {Array}   [limitOptions=[20, 50, 100]] - 默认供选择每页显示多少条
    */
   export default new Element({
-    name: 'mw-table-limit',
+    name: 'mw-limit',
     props: {
       limit: {
         type: Number,
@@ -43,13 +43,13 @@
 </script>
 
 <style lang="scss">
-  .mw-table-limit {
+  .mw-limit {
     display: flex;
     align-items: center;
     height: 2.25rem;
   }
 
-  .mw-table-limit-select {
+  .mw-limit-select {
     font-size: 1rem;
     background: transparent;
     height: 2.25rem;
