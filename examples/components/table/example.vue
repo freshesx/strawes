@@ -8,7 +8,7 @@
       <mn-section>
         <table-search></table-search>
 
-        <mw-alert-bar theme="info">
+        <mw-alert-bar theme="info" hideIcon>
           符合条件的结果共 “{{ total }}” 项
         </mw-alert-bar>
 
