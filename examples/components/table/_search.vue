@@ -49,6 +49,9 @@
       }
     },
     computed: {
+      updateModels () {
+        this.models = Q.merge(defaultModels, Q.parse(this.$route.query))
+      },
       queryUrl () {
         const queries = Q.merge(Q.parse(this.$route.query), this.models)
         queries.page = 1
@@ -62,8 +65,11 @@
     },
     watch: {
       '$route.query' () {
-        this.models = Q.merge(defaultModels, Q.parse(this.$route.query))
+        this.updateModels()
       }
+    },
+    created () {
+      this.updateModels()
     }
   }
 </script>
