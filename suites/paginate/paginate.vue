@@ -38,26 +38,24 @@
    * 表格分页功能
    * @module suites/table/tablePaginate
    * @example
-   * <mw-paginate :total="50" :limit="20" :offset="0" :gutters="2" @click="onPaginate"></mw-paginate>
+   * <mw-paginate
+   *   :totalPages="2"
+   *   :currentPage="1"
+   *   :gutters="2"></mw-paginate>
    *
-   * @param {Number}    total          - 总条数
-   * @param {Number}    limit          - 每页显示多少行
-   * @param {Number}    offset         - 起始数
+   * @param {Number}    totalPages     - 总页数
+   * @param {Number}    currentPage    - 当前页码
    * @param {Number}    [gutters=2]    - 前后展示多少位的页码
    * @param {Boolean}   hideTotalPages - 隐藏总页数
    */
   export default new Element({
     name: 'mw-paginate',
     props: {
-      total: {
+      totalPages: {
         type: Number,
         require: true
       },
-      limit: {
-        type: Number,
-        require: true
-      },
-      offset: {
+      currentPage: {
         type: Number,
         require: true
       },
@@ -73,12 +71,6 @@
       }
     },
     computed: {
-      totalPages () {
-        return Math.ceil(this.total / this.limit)
-      },
-      currentPage () {
-        return this.jumpPageNumber = Math.ceil(this.offset / this.limit) + 1
-      },
       showPageSets () {
         // 比如说前 3，后 3，则小于等于 7 时全部显示
         if (this.totalPages <= this.gutters * 2 + 1) {
@@ -102,13 +94,15 @@
         }
 
         // 计算结果，第二位参数最后加 1 是因为 range 的用法
-        return range(this.currentPage - beforeCounts, this.currentPage + afterCounts + 1)
+        return range(
+          this.currentPage - beforeCounts,
+          this.currentPage + afterCounts + 1
+        )
       }
     },
     methods: {
       resolve (pageNumber) {
-        const offset = (pageNumber - 1) * this.limit
-        return Q.merge(Q.parse(this.$route.query), { offset })
+        return Q.merge(Q.parse(this.$route.query), { page: pageNumber })
       },
       buildUrl (pageNumber) {
         return this.$router.resolve({ query: this.resolve(pageNumber) }).href
