@@ -9,7 +9,7 @@
         <table-search></table-search>
 
         <mw-alert-bar theme="info" hideIcon>
-          符合条件的结果共 “{{ total }}” 项
+          符合条件的结果共 “{{ totalItems }}” 项
         </mw-alert-bar>
 
         <mw-table-group>
@@ -76,7 +76,7 @@
         // 多选存储
         selections: [],
         // 总条数
-        total: 0,
+        totalItems: 0,
         // 总页数
         totalPages: 1,
         // 请求关键词
@@ -98,7 +98,7 @@
         // 请求数据
         const response = await listMovies(this.queries)
         this.tableItems = response.data.subjects
-        this.total = response.data.page.total
+        this.totalItems = response.data.page.totalItems
         this.totalPages = response.data.page.totalPages
       },
       // 计算 tableItems，使其符合 tableColumn 列的要求
