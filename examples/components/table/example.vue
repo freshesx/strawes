@@ -40,9 +40,8 @@
 
           <template slot="paginate">
             <mw-paginate
-              :total="total"
-              :limit="queries.limit"
-              :offset="queries.offset"></mw-paginate>
+              :totalPages="totalPages"
+              :currentPage="queries.page"></mw-paginate>
           </template>
         </mw-table-group>
       </mn-section>
@@ -59,8 +58,8 @@
   import { listMovies } from '../../axios/movies'
 
   const defaultQueries = {
-    limit: 10,
-    offset: 0
+    page: 1,
+    limit: 10
   }
 
   export default {
@@ -78,6 +77,8 @@
         selections: [],
         // 总条数
         total: 0,
+        // 总页数
+        totalPages: 1,
         // 请求关键词
         queries: Q.merge({}, defaultQueries)
       }
@@ -97,7 +98,8 @@
         // 请求数据
         const response = await listMovies(this.queries)
         this.tableItems = response.data.subjects
-        this.total = response.data.total
+        this.total = response.data.page.total
+        this.totalPages = response.data.page.totalPages
       },
       // 计算 tableItems，使其符合 tableColumn 列的要求
       calcTableItems (items) {
