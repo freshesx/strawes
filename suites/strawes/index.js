@@ -1,4 +1,5 @@
 import Suites from 'vue-human/utils/Suites'
+import alertBar from '../alertBar'
 import brand from '../brand'
 import container from '../container'
 import crumb from '../crumb'
@@ -11,6 +12,7 @@ import profile from '../profile'
 import table from '../table'
 
 export default new Suites([
+  alertBar,
   brand,
   container,
   crumb,
