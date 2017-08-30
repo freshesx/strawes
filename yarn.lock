@@ -5809,9 +5809,9 @@ vue-human-icons@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/vue-human-icons/-/vue-human-icons-1.4.0.tgz#e3fd023207474d0adc6898ddf55eb491b7839582"
 
-vue-human@2.6.11-beta.6:
-  version "2.6.11-beta.6"
-  resolved "https://registry.yarnpkg.com/vue-human/-/vue-human-2.6.11-beta.6.tgz#cd568ab82e3334eefd6d04e3157c29b43224bd51"
+vue-human@2.6.11:
+  version "2.6.11"
+  resolved "https://registry.yarnpkg.com/vue-human/-/vue-human-2.6.11.tgz#583615794243554c6644b84da8e969bb0428238b"
   dependencies:
     lodash "^4.17.4"
     node-sass "^4.5.3"
