@@ -26,7 +26,7 @@
       <div class="mw-table-bd-tip" v-if="items === undefined">
         <mn-loading-icon class="has-two-margin-right"></mn-loading-icon>努力加载中
       </div>
-      <div class="mw-table-bd-tip" v-if="items.length === 0">
+      <div class="mw-table-bd-tip" v-if="items && items.length === 0">
         没有搜索到相关内容
       </div>
       <!-- 表格主要内容 -->
