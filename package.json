@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Dashboard UI by FreshES",
   "author": "ChaselWu <chasel.wu@freshes.org>",
-  "private": true,
   "scripts": {
     "start": "node ./scripts/dev.js",
     "dev": "node ./scripts/dev.js",
