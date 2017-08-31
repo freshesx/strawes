@@ -28,13 +28,24 @@
         default () {
           return [ 20, 50, 100 ]
         }
+      },
+      limitName: {
+        type: String,
+        default: 'limit'
+      },
+      pageName: {
+        type: String,
+        default: 'page'
       }
     },
     methods: {
       // 修改每页显示多少条
       onLimit (event) {
         const limit = parseInt(event.target.value)
-        const queries = Q.merge(Q.parse(this.$route.query), { limit })
+        const queries = Q.merge(Q.parse(this.$route.query), {
+          [this.limitName]: limit,
+          [this.pageName]: 1
+        })
         this.$emit('change', event, queries, limit)
         return this.$router.push({ query: queries })
       }

@@ -63,6 +63,10 @@
         type: Number,
         default: 2
       },
+      pageName: {
+        type: String,
+        default: 'page'
+      },
       hideTotalPages: Boolean
     },
     data () {
@@ -102,7 +106,7 @@
     },
     methods: {
       resolve (pageNumber) {
-        return Q.merge(Q.parse(this.$route.query), { page: pageNumber })
+        return Q.merge(Q.parse(this.$route.query), { [this.pageName]: pageNumber })
       },
       buildUrl (pageNumber) {
         return this.$router.resolve({ query: this.resolve(pageNumber) }).href

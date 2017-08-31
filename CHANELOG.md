@@ -1,3 +1,13 @@
+## 0.1.2
+
+### /suites/limit/limit.vue
+
+* 【新增】新增 limitName 和 paginateName 属性。
+
+### /suites/paginate/paginate.vue
+
+* 【新增】新增 paginateName 属性。
+
 ## 0.1.1
 
 ### /suites/table/table
