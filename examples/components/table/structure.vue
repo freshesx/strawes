@@ -41,6 +41,17 @@
             </mn-card-item>
           </mn-card>
         </mn-section>
+
+        <mn-section>
+          <mn-card>
+            <mn-card-item><h5>如何 API 接口关于分页和条数不是 page 和 limit 的话</h5></mn-card-item>
+            <mn-card-item>
+              <mn-card-body>
+                在 limit 和 paginate 组件里提供了 limitName 和 paginateName 两个参数供自定义。可以将 limit 改为 size。
+              </mn-card-body>
+            </mn-card-item>
+          </mn-card>
+        </mn-section>
       </mw-container>
     </mn-scroller>
   </mn-page>
