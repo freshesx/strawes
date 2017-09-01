@@ -1,7 +1,13 @@
 <template>
   <div class="mw-table-hd-col" :class="{ 'is-highlight': highlight }" :style="[ computedWidth ]">
     <div class="mw-table-sort-bar">
-      <div class="mw-table-sort-bar-label" @click.prevent.stop="onHighlight">
+      <div class="mw-table-sort-bar-label"
+        :class="{
+          'has-left-text': align === 'left',
+          'has-center-text': align === 'center',
+          'has-right-text': align === 'right'
+        }"
+        @click.prevent.stop="onHighlight">
         {{ label }}
       </div>
       <div class="mw-table-sort-bar-action" v-if="sort !== 'none'">
@@ -37,7 +43,8 @@
       },
       highlight: Boolean,
       width: [ String, Number ],
-      minWidth: [ String ]
+      minWidth: [ String ],
+      align: String
     },
     data () {
       return {
@@ -92,6 +99,7 @@
   }
 
   .mw-table-sort-bar-label {
+    flex: 1;
     cursor: pointer;
   }
 

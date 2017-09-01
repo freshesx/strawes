@@ -12,6 +12,7 @@
           :highlight="column.highlight"
           :width="column.width"
           :minWidth="column.minWidth"
+          :align="column.align"
           @changeSort="onSort(arguments[0], column, arguments[1])"
           @changeHighlight="onHighlight(column, arguments[0])"
           v-for="(column, key) in columns"
@@ -42,7 +43,13 @@
               <slot :name="column.name" :item="item"></slot>
             </div>
             <!-- 默认展示方式 -->
-            <div v-else>{{ item[column.name] }}</div>
+            <div class="mw-table-bd-cell"
+              :class="{
+                'has-left-text': column.align === 'left',
+                'has-center-text': column.align === 'center',
+                'has-right-text': column.align === 'right'
+              }"
+              v-else>{{ item[column.name] }}</div>
           </div>
         </div>
       </div>
@@ -322,6 +329,10 @@
     &.is-highlight {
       background: $highlight-bg !important;
     }
+  }
+
+  .mw-table-bd-cell {
+    flex: 1;
   }
 
   .mw-table-bd-actions {
