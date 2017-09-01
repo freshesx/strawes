@@ -1,6 +1,6 @@
 <template>
   <mn-scroller>
-    <mn-container>
+    <mw-container>
       <mn-section>
         <mn-letter>
           <mn-letter-body>
@@ -25,7 +25,7 @@
           <mn-btn theme="secondary-link" @click="$router.push({ name: 'signIn' })">Sign in</mn-btn>
         </mn-section-btn>
       </mn-section>
-    </mn-container>
+    </mw-container>
   </mn-scroller>
 </template>
 
