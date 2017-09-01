@@ -1,3 +1,9 @@
+## dev
+
+### /suites/table/table.vue
+
+* 【新增】为表格列新增 align 配置项，允许设置左右中对齐的方式。
+
 ## 0.1.2
 
 ### /suites/limit/limit.vue
