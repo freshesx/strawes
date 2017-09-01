@@ -1,5 +1,13 @@
 export default [
   {
+    path: '/',
+    name: 'homepage',
+    component: resolve => { require(['../components/home'], resolve) },
+    meta: {
+      title: '首页'
+    }
+  },
+  {
     path: '/start',
     name: 'start',
     component: resolve => { require(['../components/start'], resolve) },

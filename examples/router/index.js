@@ -18,9 +18,6 @@ const router = new VueRouter({
     },
     {
       path: '/dashboard',
-      meta: {
-        title: '首页'
-      },
       component: resolve => { require(['../components/dashboard'], resolve) },
       children: dashboard
     }
