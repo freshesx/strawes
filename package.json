@@ -1,8 +1,9 @@
 {
   "name": "strawes",
   "version": "0.1.2",
-  "description": "Dashboard UI by FreshES",
-  "author": "ChaselWu <chasel.wu@freshes.org>",
+  "description": "Dashboard UI extends vue-human by FreshES",
+  "author": "ChaselWu <chasel.wu@vitualreaty.com>",
+  "license": "MIT",
   "scripts": {
     "start": "node ./scripts/dev.js",
     "dev": "node ./scripts/dev.js",
@@ -11,7 +12,8 @@
     "lint": "eslint --ext .js,.vue src",
     "config": "cp src/env/config.js src/env/config.local.js",
     "git": "git init && git add . && git commit -m 'init project'",
-    "first": "yarn install && yarn run config && yarn run git"
+    "first": "yarn install && yarn run config && yarn run git",
+    "test": "echo \"No test programs\" && exit 0"
   },
   "dependencies": {
     "axios": "^0.16.2",
