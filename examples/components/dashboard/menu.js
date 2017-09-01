@@ -12,7 +12,7 @@
 export default [
   {
     label: '首页',
-    route: { name: 'start' },
+    route: { name: 'homepage' },
     icon: require('vue-human-icons/js/ios/home-outline'),
     badge: {
       route: { name: 'stylesRegulation' }
