@@ -1,4 +1,4 @@
-## dev
+## 0.1.3
 
 ### /suites/table/table.vue
 
