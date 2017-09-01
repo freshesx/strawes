@@ -9,8 +9,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'homepage',
-      component: resolve => { require(['../components/home'], resolve) }
+      redirect: '/dashboard'
     },
     {
       path: '/sign',
