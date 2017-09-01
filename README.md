@@ -1,8 +1,29 @@
 # strawes
 
-> Dashboard UI by FreshES
+> Dashboard UI extends vue-human by FreshES
 
-## Build Setup
+<p align="center">
+  <a href="https://www.npmjs.com/package/strawes" title="npm">
+    <img src="https://badge.fury.io/js/strawes.svg">
+  </a>
+  <a href="https://minowu.gitbooks.io/vue-human" title="gitbook">
+    <img src="https://img.shields.io/badge/gitbook-中文文档-brightgreen.svg?style=flat-square">
+  </a>
+  <a href="https://gitter.im/HumanUI/Lobby" title="GITTER">
+    <img src="https://img.shields.io/badge/gitter-chat-brightgreen.svg?style=flat-square">
+  </a>
+  <span title="License MIT">
+    <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square">
+  </span>
+</p>
+
+<p align="center">
+  <a href="https://circleci.com/gh/HumanUI/strawes/tree/master" title="CircleCI">
+    <img src="https://circleci.com/gh/HumanUI/strawes/tree/master.svg?style=svg">
+  </a>
+</p>
+
+## How to build examples
 
 ``` bash
 # install dependencies
@@ -17,15 +38,4 @@ yarn run dev
 
 # build for production with minification
 yarn run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
