@@ -3,6 +3,10 @@
 > Dashboard UI extends vue-human by FreshES
 
 <p align="center">
+  <img width="320" src="https://raw.githubusercontent.com/HumanUI/vue-human/master/docs/vue-human.jpg">
+</p>
+
+<p align="center">
   <a href="https://www.npmjs.com/package/strawes" title="npm">
     <img src="https://badge.fury.io/js/strawes.svg">
   </a>
