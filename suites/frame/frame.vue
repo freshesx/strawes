@@ -13,6 +13,9 @@
         </div>
       </div>
     </div>
+
+    <mn-assistive-bar slot="footer" :show.sync="showSidebar"></mn-assistive-bar>
+
     <div class="mw-frame-contents">
       <slot name="contents"></slot>
     </div>
@@ -21,9 +24,18 @@
 
 <script>
   import Element from 'vue-human/utils/Element'
+  import assistiveBar from 'vue-human/suites/assistiveBar'
 
   export default new Element({
-    name: 'mw-frame'
+    name: 'mw-frame',
+    components: {
+      ...assistiveBar.map()
+    },
+    data () {
+      return {
+        showSidebar: false
+      }
+    }
   })
 </script>
 
