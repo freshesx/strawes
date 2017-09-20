@@ -111,7 +111,7 @@
     }
 
     &.is-active {
-      transform: translateY(0);
+      transform: translateX(0);
     }
   }
 
