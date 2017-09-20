@@ -71,6 +71,7 @@
 
     .mn-assistive-bar {
       position: absolute;
+      z-index: 998;
     }
 
     &-shade {
@@ -81,7 +82,7 @@
       bottom: 0;
       background-color: #000;
       opacity: .6;
-      z-index: 99;
+      z-index: 998;
       display: flex;
       align-items: center;
       justify-content: flex-end;
