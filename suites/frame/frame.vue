@@ -19,8 +19,6 @@
       <slot name="contents"></slot>
     </div>
 
-    <mn-assistive-bar slot="footer" :show.sync="showSidebar" v-show="!showSidebar"></mn-assistive-bar>
-
     <div
       class="mw-frame-shade"
       @click="clickShade"
@@ -30,21 +28,23 @@
           <mn-icon :name="icons.hand"></mn-icon>
         </div>
     </div>
+
+    <div class="mw-frame-footer">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
 <script>
   import Element from 'vue-human/utils/Element'
-  import assistiveBar from 'vue-human/suites/assistiveBar'
 
   export default new Element({
     name: 'mw-frame',
-    components: {
-      ...assistiveBar.map()
+    props: {
+      showSidebar: Boolean
     },
     data () {
       return {
-        showSidebar: false,
         icons: {
           hand: require('./handIcon')
         }
@@ -52,7 +52,7 @@
     },
     methods: {
       clickShade () {
-        this.showSidebar = false
+        this.$emit('update:showSidebar', false)
       }
     }
   })
@@ -68,32 +68,6 @@
     height: 100%;
     overflow: hidden;
     display: flex;
-
-    .mn-assistive-bar {
-      position: absolute;
-      z-index: 998;
-    }
-
-    &-shade {
-      position: fixed;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      background-color: #000;
-      opacity: .6;
-      z-index: 998;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      font-size: 0.875rem;
-      color: #fff;
-
-      &-label {
-        width: 35%;
-        text-align: center;
-      }
-    }
   }
 
   .mw-frame-side {
@@ -112,6 +86,27 @@
 
     &.is-active {
       transform: translateX(0);
+    }
+  }
+
+  .mw-frame-shade {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: .6;
+    z-index: 998;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 0.875rem;
+    color: #fff;
+
+    &-label {
+      width: 35%;
+      text-align: center;
     }
   }
 
