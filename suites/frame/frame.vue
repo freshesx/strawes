@@ -43,6 +43,11 @@
     props: {
       showSidebar: Boolean
     },
+    watch: {
+      $route () {
+        if (this.showSidebar) this.$emit('update:showSidebar', false)
+      }
+    },
     data () {
       return {
         icons: {
