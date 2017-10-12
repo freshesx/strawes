@@ -66,5 +66,16 @@ export default [
         route: { name: 'tableStructure' }
       }
     ]
+  },
+  {
+    label: '组件',
+    collapsed: true,
+    icon: require('vue-human-icons/js/ios/cog-outline'),
+    children: [
+      {
+        label: '树形控件',
+        route: { name: 'componentsTree' }
+      }
+    ]
   }
 ]
