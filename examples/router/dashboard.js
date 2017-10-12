@@ -105,5 +105,14 @@ export default [
     meta: {
       title: '列表结构'
     }
+  },
+  // 组件
+  {
+    path: '/components/tree',
+    name: 'componentsTree',
+    component: resolve => { require(['../components/tree'], resolve) },
+    meta: {
+      title: '树形控件'
+    }
   }
 ]

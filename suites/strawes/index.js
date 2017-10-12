@@ -11,7 +11,7 @@ import navigation from '../navigation'
 import paginate from '../paginate'
 import profile from '../profile'
 import table from '../table'
-
+import tree from '../tree'
 export default new Suites([
   alertBar,
   brand,
@@ -24,5 +24,6 @@ export default new Suites([
   navigation,
   paginate,
   profile,
-  table
+  table,
+  tree
 ])
