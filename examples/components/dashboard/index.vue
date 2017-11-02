@@ -1,5 +1,5 @@
 <template>
-  <mw-frame :showSidebar.sync="showSidebar">
+  <mw-frame :showMobileSide.sync="showMobileSide">
     <mw-brand slot="brand">
       Strawes
     </mw-brand>
@@ -11,7 +11,7 @@
       </mw-profile>
     </div>
     <router-view slot="contents"></router-view>
-    <mn-assistive-bar slot="footer" :show.sync="showSidebar"></mn-assistive-bar>
+    <mn-assistive-bar slot="footer" :show.sync="showMobileSide"></mn-assistive-bar>
   </mw-frame>
 </template>
 
@@ -23,7 +23,7 @@
       return {
         menu: require('./menu').default,
         avator: 'https://ois1yok9v.qnssl.com/example-avator.png',
-        showSidebar: false
+        showMobileSide: false
       }
     },
     components: {

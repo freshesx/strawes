@@ -1,6 +1,6 @@
 <template>
   <div class="mw-frame">
-    <div class="mw-frame-side" :class="{'is-active': showSidebar}">
+    <div class="mw-frame-side" :class="{'is-active': showMobileSide}">
       <div class="mw-frame-side-inner">
         <div class="mw-frame-brand">
           <slot name="brand"></slot>
@@ -18,7 +18,7 @@
       <slot name="contents"></slot>
     </div>
 
-    <div class="mw-frame-shade" @click="clickShade" v-if="showSidebar">
+    <div class="mw-frame-shade" @click="clickShade" v-if="showMobileSide">
       <div class="mw-frame-shade-holder"></div>
       <div class="mw-frame-shade-icon">
         <mn-icon :name="icons.close"></mn-icon>
@@ -37,11 +37,11 @@
   export default new Element({
     name: 'mw-frame',
     props: {
-      showSidebar: Boolean
+      showMobileSide: Boolean
     },
     watch: {
       $route () {
-        if (this.showSidebar) this.$emit('update:showSidebar', false)
+        if (this.showMobileSide) this.$emit('update:showMobileSide', false)
       }
     },
     data () {
@@ -53,7 +53,7 @@
     },
     methods: {
       clickShade () {
-        this.$emit('update:showSidebar', false)
+        this.$emit('update:showMobileSide', false)
       }
     }
   })
