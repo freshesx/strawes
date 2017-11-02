@@ -13,10 +13,15 @@
 </script>
 
 <style lang="scss">
+  @import "~vue-human/scss/mixins/media";
+
   .mw-container {
     width: 100%;
     max-width: 1200px;
-    padding: 1rem;
     margin: 0 auto;
+
+    @include min-screen(mobile) {
+      padding: 1rem;
+    }
   }
 </style>
