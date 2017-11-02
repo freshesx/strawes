@@ -18,14 +18,10 @@
       <slot name="contents"></slot>
     </div>
 
-    <div
-      class="mw-frame-shade"
-      @click="clickShade"
-      v-if="showSidebar">
-        <div class="mw-frame-shade-label">
-          <p>点击此处关闭</p>
-          <mn-icon :name="icons.hand"></mn-icon>
-        </div>
+    <div class="mw-frame-shade" @click="clickShade" v-if="showSidebar">
+      <div class="mw-frame-shade-label">
+        <mn-icon :name="icons.close"></mn-icon>
+      </div>
     </div>
 
     <div class="mw-frame-footer">
@@ -50,7 +46,7 @@
     data () {
       return {
         icons: {
-          hand: require('./handIcon')
+          close: require('vue-human-icons/js/ios/arrow-back')
         }
       }
     },
