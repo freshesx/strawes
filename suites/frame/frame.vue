@@ -71,17 +71,22 @@
   }
 
   .mw-frame-side {
-    width: 220px;
+    position: absolute;
+    width: 65%;
+    max-width: 220px;
+    height: 100%;
     flex-shrink: 0;
+    transform: translateX(-110%);
+    transition-duration: 300ms;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
 
-    @include max-screen(tablet) {
-      position: absolute;
-      z-index: 999;
-      width: 65%;
-      height: 100%;
-      transform: translateX(-110%);
-      transition-duration: 300ms;
-      box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    @include min-screen(desktop) {
+      position: static;
+      width: 220px;
+      transition-duration: 0;
+      transform: none;
+      box-shadow: none;
     }
 
     &.is-active {
