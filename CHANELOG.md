@@ -1,3 +1,10 @@
+## 0.1.4
+
+### /suites/frame/frame.vue
+
+* 【修改】实现侧边栏在移动状态下的兼容
+* 【修改】实现 contrainer 在移动状态下的兼容
+
 ## 0.1.3
 
 ### /suites/table/table.vue
