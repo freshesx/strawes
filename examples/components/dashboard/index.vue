@@ -11,7 +11,7 @@
       </mw-profile>
     </div>
     <router-view slot="contents"></router-view>
-    <mn-assistive-bar slot="footer" :show.sync="showSidebar" v-show="!showSidebar"></mn-assistive-bar>
+    <mn-assistive-bar slot="footer" :show.sync="showSidebar"></mn-assistive-bar>
   </mw-frame>
 </template>
 
