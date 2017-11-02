@@ -1,7 +1,6 @@
 <template>
   <div class="mw-frame">
-    <div
-      :class="['mw-frame-side', {'is-active': showSidebar}]">
+    <div class="mw-frame-side" :class="{'is-active': showSidebar}">
       <div class="mw-frame-side-inner">
         <div class="mw-frame-brand">
           <slot name="brand"></slot>
