@@ -19,7 +19,8 @@
     </div>
 
     <div class="mw-frame-shade" @click="clickShade" v-if="showSidebar">
-      <div class="mw-frame-shade-label">
+      <div class="mw-frame-shade-holder"></div>
+      <div class="mw-frame-shade-icon">
         <mn-icon :name="icons.close"></mn-icon>
       </div>
     </div>
@@ -100,18 +101,20 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background-color: #000;
-    opacity: .6;
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 998;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    font-size: 0.875rem;
     color: #fff;
+    z-index: 998;
 
-    &-label {
-      width: 35%;
-      text-align: center;
+    &-holder {
+      width: 65%;
+      max-width: 220px;
+      margin-right: 3rem;
+    }
+
+    &-icon {
     }
   }
 
