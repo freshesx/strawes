@@ -139,8 +139,8 @@
     },
     methods: {
       onScroll (event) {
-        this.scrollLeft = event.srcElement.scrollLeft
-        this.scrollTop = event.srcElement.scrollTop
+        this.scrollLeft = event.target.scrollLeft
+        this.scrollTop = event.target.scrollTop
       },
       calcWidth (column) {
         if (!isUndefined(column.minWidth)) {
