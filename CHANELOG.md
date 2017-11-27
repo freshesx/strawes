@@ -1,3 +1,9 @@
+## 0.1.5
+
+### /suites/table/table.vue
+
+* 【修复】table 在 firefox 下的 header 移动的 bug
+
 ## 0.1.4
 
 ### /suites/frame/frame.vue
